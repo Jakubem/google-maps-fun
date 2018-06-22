@@ -8,12 +8,12 @@ const positionOutput = document.querySelector('.position-output');
 
 function initMap() {
     let myLatLng = {
-            lat: -34.397,
-            lng: 150.644
+            lat: 53.5,
+            lng: 14.4
         },
         map = new google.maps.Map(document.getElementById('map'), {
             center: myLatLng,
-            zoom: 8,
+            zoom: 10,
             mapTypeId: 'satellite',
         });
     marker = new google.maps.Marker({
@@ -22,11 +22,26 @@ function initMap() {
         title: 'drag',
         draggable: true,
     });
+
     getPositionBtn.addEventListener('click', getMyLatLng);
+    setPositionBtn.addEventListener('click', setNewPoint);
 
     function getMyLatLng() {
         let lat = marker.getPosition().lat();
         let lng = marker.getPosition().lng();
-        positionOutput.innerHTML = `Lat: ${lat.toFixed(2)}, Lng: ${lng.toFixed(2)}`;
+        positionOutput.innerHTML = `Lat: ${lat.toFixed(5)}, Lng: ${lng.toFixed(5)}`;
+    }
+
+    function setNewPoint() {
+        let newLatLng = {
+            lat: Number(latInput.value),
+            lng: Number(lngInput.value)
+        }
+        return new google.maps.Marker({
+            position: newLatLng,
+            map: map,
+            title: 'drag',
+            draggable: true,
+        })
     }
 }
