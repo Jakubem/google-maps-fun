@@ -24,6 +24,7 @@ body {
   left: 0;
   padding: 15px;
   border-top-right-radius: 4px;
+  width: 30%;
 }
 
 .label {
@@ -33,9 +34,13 @@ body {
   margin: 0;
 }
 
-/* .input-wrapper, */
 .output-wrapper {
 margin-left: 10px;
+width: 100%;
+}
+
+.input-wrapper {
+  width: 100%;
 }
 
 output,

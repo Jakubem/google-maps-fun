@@ -2,9 +2,9 @@ let map;
 
 const latInput = document.querySelector('.lat-input');
 const lngInput = document.querySelector('.lng-input');
-const submitBtn = document.querySelector('.submit-btn');
-const latOutput = document.querySelector('.lat-output');
-const lngOutput = document.querySelector('.lng-output');
+const setPositionBtn = document.querySelector('.set-position-btn');
+const getPositionBtn = document.querySelector('.get-position-btn');
+const positionOutput = document.querySelector('.position-output');
 
 function initMap() {
     let myLatLng = {
@@ -22,13 +22,11 @@ function initMap() {
         title: 'drag',
         draggable: true,
     });
-    submitBtn.addEventListener('click', getMyLatLng)
-
+    getPositionBtn.addEventListener('click', getMyLatLng);
 
     function getMyLatLng() {
         let lat = marker.getPosition().lat();
         let lng = marker.getPosition().lng();
-        console.log('Latitude: ' + lat);
-        console.log('Longitude: ' + lng);
+        positionOutput.innerHTML = `Lat: ${lat.toFixed(2)}, Lng: ${lng.toFixed(2)}`;
     }
 }
