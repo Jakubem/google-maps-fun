@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="map"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA89WOjmmx-Y0iF1C4aHW-I7WRwNVGC-lA&callback=initMap" async
+        defer></script>
+    <div class="ui-wrapper">
+        <div class="input-wrapper">
+            <label class="label">
+                Latitude input
+                <input type="number" id="lat-input" class=" input" />
+            </label>
+
+            <label class="label">
+                Longitude input
+                <input type="number" id="lng-input" class=" input" />
+            </label>
+
+            <label class="label">
+                Zoom input
+                <input type="range" id="zoom-slider" class="input" name="zoom" min="1" max="20" />
+            </label>
+        </div>
+        <div class="output-wrapper">
+            <label class="label">
+                Latitude output
+                <output id="lat-output" class=" output">
+                </output>
+            </label>
+
+            <label class="label">
+                Longitude output
+                <output id="lng-output" class=" output">
+                </output>
+            </label>
+
+            <label class="label">
+                Get coordinates
+                <input type="button" class='submit-btn' value="click">
+            </label>
+        </div>
+
+
+    </div>
+    <script src="./index.js"></script>
+</body>
+
+</html>
