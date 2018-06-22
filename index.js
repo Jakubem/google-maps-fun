@@ -16,12 +16,6 @@ function initMap() {
             zoom: 10,
             mapTypeId: 'satellite',
         });
-    marker = new google.maps.Marker({
-        position: myLatLng,
-        map: map,
-        title: 'drag',
-        draggable: true,
-    });
 
     getPositionBtn.addEventListener('click', getMyLatLng);
     setPositionBtn.addEventListener('click', setNewPoint);

@@ -13,27 +13,11 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA89WOjmmx-Y0iF1C4aHW-I7WRwNVGC-lA&callback=initMap" async
         defer></script>
     <div class="ui-wrapper">
-        <div class="input-wrapper">
-            <label class="label">
-                Latitude input
-                <input type="number" class="lat-input" class=" input" value="53.5" />
-            </label>
-
-            <label class="label">
-                Longitude input
-                <input type="number" class="lng-input" class=" input" value="14.4" />
-            </label>
+        <div class="left-wrapper">
 
             <label class="label">
                 Zoom input
                 <input type="range" id="zoom-slider" class="input" name="zoom" min="1" max="20" />
-            </label>
-        </div>
-        <div class="output-wrapper">
-            <label class="label">
-                Latitude output
-                <output id="lat-output" class="position-output">
-                </output>
             </label>
 
             <label class="label">
@@ -45,6 +29,24 @@
                 Get coordinates
                 <input type="button" class='get-position-btn' value="click">
             </label>
+        </div>
+
+        <div class="right-wrapper">
+            <label class="label">
+                Latitude input
+                <input type="number" class="lat-input" class=" input" value="53.5" />
+            </label>
+
+            <label class="label">
+                Longitude input
+                <input type="number" class="lng-input" class=" input" value="14.4" />
+            </label>
+            <label class="label">
+                Latitude output
+                <output id="lat-output" class="position-output">
+                </output>
+            </label>
+
         </div>
 
     </div>

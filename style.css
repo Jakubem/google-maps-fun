@@ -1,8 +1,10 @@
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
+
 #map {
   height: 100%;
 }
+
 /* Optional: Makes the sample page fill the window. */
 html,
 body {
@@ -21,6 +23,7 @@ body {
   left: 0;
   padding: 15px;
   border-top-right-radius: 4px;
+  min-width: 40%;
 }
 
 .label {
@@ -30,10 +33,11 @@ body {
   margin: 0;
 }
 
-.output-wrapper {
+.right-wrapper {
 margin-left: 10px;
 width: 100%;
 }
+
 output,
 input {
   box-sizing: border-box;
@@ -42,6 +46,7 @@ input {
   height: 25px;
   border: 1px solid black;
 }
+
 output {
   border: 1px solid red;
 }
