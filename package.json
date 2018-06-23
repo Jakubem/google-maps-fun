@@ -1,0 +1,22 @@
+{
+  "name": "google-maps-fun",
+  "version": "1.0.0",
+  "description": "fun with google maps",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jakubem/google-maps-fun.git"
+  },
+  "author": "Jakub Maksimowicz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jakubem/google-maps-fun/issues"
+  },
+  "homepage": "https://github.com/Jakubem/google-maps-fun#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
