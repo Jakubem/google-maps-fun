@@ -16,26 +16,47 @@ function initMap() {
             zoom: 10,
             mapTypeId: 'satellite',
         });
+        
+        // add marker on click
+        map.addListener('click', (e)=> {
+            placeMarker(e.latLng);
+        });
+        
+        let markers = [];
+        function placeMarker(position) {
+            let marker = new google.maps.Marker({
+                position: position,
+                map: map,
+                draggable: true
+            });
+            let lat = marker.getPosition().lat();
+            let lng = marker.getPosition().lng();
+            console.log(`Lat: ${lat.toFixed(5)}, Lng: ${lng.toFixed(5)}`);
+            
+            markers.push(`{"lat": ${lat}, "lng": ${lng}}`);
+        }
 
     getPositionBtn.addEventListener('click', getMyLatLng);
-    setPositionBtn.addEventListener('click', setNewPoint);
 
-    function getMyLatLng() {
-        let lat = marker.getPosition().lat();
-        let lng = marker.getPosition().lng();
-        positionOutput.innerHTML = `Lat: ${lat.toFixed(5)}, Lng: ${lng.toFixed(5)}`;
+    function getMyLatLng(){
+        const markers2 = markers.map((marker)=>{
+            // console.log(marker);
+            return JSON.parse(marker)
+        })
+        markers2.forEach((marker)=>{
+            console.log(marker);
+        })
     }
 
-    function setNewPoint() {
-        let newLatLng = {
-            lat: Number(latInput.value),
-            lng: Number(lngInput.value)
-        }
+    setPositionBtn.addEventListener('click', setNewPoint);
+    function setNewPoint(){
         return new google.maps.Marker({
-            position: newLatLng,
+            position: {
+                lat: Number(latInput.value),
+                lng: Number(lngInput.value)
+            },
             map: map,
-            title: 'drag',
-            draggable: true,
-        })
+            draggable: true
+        });
     }
 }
