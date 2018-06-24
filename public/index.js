@@ -1,6 +1,6 @@
 let map;
 
-// const socket = io('http://localhost:5500');
+const socket = io('http://localhost:5500');
 
 const latInput = document.querySelector('.lat-input');
 const lngInput = document.querySelector('.lng-input');
@@ -8,10 +8,10 @@ const setPositionBtn = document.querySelector('.set-position-btn');
 const getPositionBtn = document.querySelector('.get-position-btn');
 const positionOutput = document.querySelector('.position-output');
 
-// socket.on('news', (data) => {
-//     console.log('Backend says', data);
-//     socket.emit('hello');
-//   });
+socket.on('news', (data) => {
+    console.log('Backend says', data);
+    socket.emit('hello');
+  });
 
 function initMap() {
     let myLatLng = {
