@@ -8,11 +8,6 @@ const setPositionBtn = document.querySelector('.set-position-btn');
 const getPositionBtn = document.querySelector('.get-position-btn');
 const positionOutput = document.querySelector('.position-output');
 
-socket.on('hops', (data) => {
-    console.log('Backend says', data);
-    socket.emit('pins', {pins: 'pins'});
-  });
-
 function initMap() {
     let myLatLng = {
             lat: 53.36552,
@@ -54,7 +49,7 @@ function initMap() {
         const allPins = {
             "pins": markersToJSON,
         }
-        console.log(allPins);
+        socket.emit('pins', allPins)
     }
 
     setPositionBtn.addEventListener('click', setNewPoint);

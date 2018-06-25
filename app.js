@@ -13,7 +13,8 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
     console.log('a user connected');
-    socket.emit('hops', {hops: 'hello'});
+    socket.emit('hops', 'connected');
+
     socket.on('pins', (data)=>{
         console.log(data);
     })
