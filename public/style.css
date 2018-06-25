@@ -22,12 +22,18 @@ body {
   padding: 15px;
   border-top-right-radius: 4px;
   min-width: 350px;
+  opacity: 0.6;
+  transition: 0.3s;
+}
+
+.ui-wrapper:hover {
+  opacity: 1;
 }
 
 .label {
   display: flex;
   flex-direction: column;
-  font-family: 'helvetica', 'arial', 'sans-serif';
+  font-family: 'futura', 'arial', 'helvetica', sans-serif;
   margin: 0;
 }
 
