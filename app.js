@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 var http = require('http').Server(app);
 const io = require('socket.io')(http);
+const fs = require('fs');
 
 const port = 5500;
 
@@ -17,9 +18,13 @@ io.on('connection', (socket) => {
 
     socket.on('pins', (data)=>{
         console.log(data);
+        writeToFile(data)
     })
 });
 
+function writeToFile(data){
+    fs.writeFile('all-pins.json', JSON.stringify(data));
+}
 
 http.listen(port, () => {
     console.log(`listening on ${port}`);
