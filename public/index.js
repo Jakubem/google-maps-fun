@@ -8,9 +8,9 @@ const setPositionBtn = document.querySelector('.set-position-btn');
 const getPositionBtn = document.querySelector('.get-position-btn');
 const positionOutput = document.querySelector('.position-output');
 
-socket.on('news', (data) => {
+socket.on('hops', (data) => {
     console.log('Backend says', data);
-    socket.emit('hello');
+    socket.emit('pins', {pins: 'pins'});
   });
 
 function initMap() {

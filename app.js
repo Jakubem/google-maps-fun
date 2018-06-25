@@ -13,8 +13,12 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
     console.log('a user connected');
-
+    socket.emit('hops', {hops: 'hello'});
+    socket.on('pins', (data)=>{
+        console.log(data);
+    })
 });
+
 
 http.listen(port, () => {
     console.log(`listening on ${port}`);
