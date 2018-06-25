@@ -23,7 +23,7 @@ io.on('connection', (socket) => {
 });
 
 function writeToFile(data){
-    fs.writeFile('all-pins.json', JSON.stringify(data));
+    fs.writeFileSync('all-pins.json', JSON.stringify(data));
 }
 
 http.listen(port, () => {

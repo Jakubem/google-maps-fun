@@ -32,6 +32,7 @@ function initMap() {
                 map: map,
                 draggable: true
             });
+
             let lat = marker.getPosition().lat();
             let lng = marker.getPosition().lng();
             console.log(`Lat: ${lat.toFixed(5)}, Lng: ${lng.toFixed(5)}`);
@@ -50,6 +51,7 @@ function initMap() {
             "pins": markersToJSON,
         }
         socket.emit('pins', allPins)
+        console.log(allPins);
     }
 
     setPositionBtn.addEventListener('click', setNewPoint);
