@@ -1,68 +1,73 @@
 let map;
 
-const socket = io('http://localhost:5500');
-
 const latInput = document.querySelector('.lat-input');
 const lngInput = document.querySelector('.lng-input');
-const setPositionBtn = document.querySelector('.set-position-btn');
 const getPositionBtn = document.querySelector('.get-position-btn');
-const positionOutput = document.querySelector('.position-output');
+
+// create socket connection
+const socket = io('http://localhost:5500');
+
+socket.on('connectionEstablished', (data)=>{
+    console.log(data);
+})
 
 function initMap() {
     let myLatLng = {
             lat: 53.36552,
             lng: 14.64999
         },
+
+        //initialize new google map instance
         map = new google.maps.Map(document.getElementById('map'), {
             center: myLatLng,
             zoom: 19,
             mapTypeId: 'satellite',
             draggableCursor: 'crosshair',
         });
-        
-        // add marker on click
-        map.addListener('click', (e)=> {
-            placeMarker(e.latLng);
-        });
-        
-        let markers = [];
-        function placeMarker(position) {
-            let marker = new google.maps.Marker({
-                position: position,
-                map: map,
-                draggable: true
-            });
 
-            let lat = marker.getPosition().lat();
-            let lng = marker.getPosition().lng();
-            console.log(`Lat: ${lat.toFixed(5)}, Lng: ${lng.toFixed(5)}`);
-            
-            markers.push(`{"lat": ${lat},"lng": ${lng}}`);
-        }
+    // add marker on click
+    map.addListener('click', (e) => {
+        placeMarker(e.latLng);
+    });
+
+    //create empty array for all created markers
+    let markers = [];
+
+    // create marker based on click position
+    function placeMarker(pos) {
+        let marker = new google.maps.Marker({
+                position: pos,
+                map: map,
+                draggable: true,
+                icon: './assets/img/pin.png',
+            },
+        );
+
+        // push each created marker to markers array
+        markers.push(marker)
+    }
 
     getPositionBtn.addEventListener('click', getMyLatLng);
 
-    function getMyLatLng(){
-        const markersToJSON = markers.map((marker)=>{
-            return JSON.parse(marker)
-        })
-        
-        const allPins = {
-            "pins": markersToJSON,
-        }
-        socket.emit('pins', allPins)
-        console.log(allPins);
-    }
+    // get position of each marker as JSON
+    function getMyLatLng() {
 
-    setPositionBtn.addEventListener('click', setNewPoint);
-    function setNewPoint(){
-        return new google.maps.Marker({
-            position: {
-                lat: Number(latInput.value),
-                lng: Number(lngInput.value)
-            },
-            map: map,
-            draggable: true
-        });
+        // create empty markersPosition array or reset existing one
+        markersPosition = [];
+
+        // loop through all created markers...
+        markers.forEach((el) => {
+            // ...and get each marker position
+            let lat = el.getPosition().lat();
+            let lng = el.getPosition().lng(); 
+            markersPosition.push(JSON.parse(`{"lat": ${lat},"lng": ${lng}}`));
+        })
+
+        const allPins = {
+            "pins": markersPosition,
+        }
+        // socket.emit('pins', allPins)
+        socket.emit('pins', JSON.stringify(allPins, null, 2))
+        console.log('send to backend: ' + JSON.stringify(allPins));
     }
 }

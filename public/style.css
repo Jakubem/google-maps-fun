@@ -19,39 +19,22 @@ body {
   position: absolute;
   bottom: 0;
   left: 0;
-  padding: 15px;
+  padding: 10px;
   border-top-right-radius: 4px;
-  min-width: 350px;
-  opacity: 0.6;
-  transition: 0.3s;
-}
-
-.ui-wrapper:hover {
-  opacity: 1;
+  min-width: 150px;
 }
 
 .label {
   display: flex;
   flex-direction: column;
-  font-family: 'futura', 'arial', 'helvetica', sans-serif;
+  font-family: 'verdana', 'arial', 'helvetica', sans-serif;
   margin: 0;
 }
 
-.right-wrapper {
-  margin-left: 10px;
-  flex-grow: 1;
-}
-
-output,
 input {
   box-sizing: border-box;
   margin: 0;
-  margin-bottom: 10px;
-  height: 25px;
+  height: 35px;
   border: 1px solid black;
   width: 100%;
-}
-
-output {
-  border: 1px solid rgb(61, 129, 64);
 }
