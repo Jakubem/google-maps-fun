@@ -3,6 +3,7 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const fs = require('fs');
+const path = require('path');
 
 const port = 5500;
 
@@ -11,12 +12,14 @@ app.use(express.static('public'))
 
 // serve index.html as root
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(
+    path.join(__dirname, '/index.html'),
+  );
 });
 
 // respond to client connection
 io.on('connection', (socket) => {
-  console.log('client is ready');
+  console.log('client is ready (connected)');
 
   socket.emit('connectionEstablished', 'backend connected');
 
