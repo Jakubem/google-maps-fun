@@ -2,32 +2,22 @@
 <html lang="en">
 
 <head>
-    <title>Simple Map</title>
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="style.css">
+  <title>Simple Map</title>
+  <meta name="viewport" content="initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div id="map"></div>
-    <div class="ui-wrapper">
-                <input type="button" class='get-position-btn' value="Get coordinates" aria-label="Get coordinates">
-                <input type="button" class='remove-marker-btn' value="remove marker" aria-label="remove marker">
-        <!-- <div class="right-wrapper">
-            <label class="label">
-                Latitude input
-                <input type="number" class="lat-input" class="input" value="53.36552" />
-            </label>
-
-            <label class="label">
-                Longitude input
-                <input type="number" class="lng-input" class="input" value="14.64999" />
-            </label>
-        </div> -->
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
-    <script src="./index.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA89WOjmmx-Y0iF1C4aHW-I7WRwNVGC-lA&callback=initMap" async defer></script>
+  <div id="map"></div>
+  <div class="ui-wrapper">
+    <input type="button" class='get-position-btn btn' value="Get coordinates" aria-label="Get coordinates">
+    <input type="button" class='remove-marker-btn btn' value="remove marker" aria-label="remove marker">
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+  <script src="./index.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA89WOjmmx-Y0iF1C4aHW-I7WRwNVGC-lA&callback=initMap" async
+    defer></script>
 </body>
 
 </html>
