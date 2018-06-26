@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 io.on('connection', (socket) => {
     console.log('client is ready');
 
-    socket.emit('connectionEstablished', 'connected');
+    socket.emit('connectionEstablished', 'backend connected');
 
     // get all pins from client...
     socket.on('pins', (data)=>{

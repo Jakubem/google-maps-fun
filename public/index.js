@@ -3,6 +3,7 @@ let map;
 const latInput = document.querySelector('.lat-input');
 const lngInput = document.querySelector('.lng-input');
 const getPositionBtn = document.querySelector('.get-position-btn');
+const removeMarkerBtn = document.querySelector('.remove-marker-btn');
 
 // create socket connection
 const socket = io('http://localhost:5500');
@@ -39,13 +40,18 @@ function initMap() {
                 position: pos,
                 map: map,
                 draggable: true,
-                icon: './assets/img/pin.png',
+                // icon: './assets/img/pin.png',
             },
         );
 
         // push each created marker to markers array
         markers.push(marker)
     }
+
+    // remove single marker
+    removeMarkerBtn.addEventListener('click', ()=>{
+        markers[2].setMap(null);
+    })
 
     getPositionBtn.addEventListener('click', getMyLatLng);
 

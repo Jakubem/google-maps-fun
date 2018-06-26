@@ -11,11 +11,8 @@
 <body>
     <div id="map"></div>
     <div class="ui-wrapper">
-            <label class="label">
-                Get coordinates
-                <input type="button" class='get-position-btn' value="click">
-            </label>
-
+                <input type="button" class='get-position-btn' value="Get coordinates" aria-label="Get coordinates">
+                <input type="button" class='remove-marker-btn' value="remove marker" aria-label="remove marker">
         <!-- <div class="right-wrapper">
             <label class="label">
                 Latitude input
@@ -27,7 +24,6 @@
                 <input type="number" class="lng-input" class="input" value="14.64999" />
             </label>
         </div> -->
-        
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
     <script src="./index.js"></script>
