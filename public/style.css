@@ -15,28 +15,57 @@ body {
 .ui-wrapper {
   display: flex;
   justify-content: center;
-  background: white;
+  flex-direction: column;
+  background: #363636;
   position: absolute;
   bottom: 0;
   left: 0;
   padding: 10px;
   border-top-right-radius: 4px;
-  min-width: 150px;
+  font-family: 'verdana';
 }
 
-.btn {
+.btn,
+.text-input {
   box-sizing: border-box;
-  margin: 5px;
+  margin: 3px;
   height: 35px;
   border: none;
-  border-radius: 4px;
-  width: 100%;
+  border-radius: 3px;
+}
+
+.text-input {
+  padding: 0;
+  margin-bottom: 15px;
+}
+
+label {
+  font-size: 15px;
+  padding: 0;
+  margin: 0;
+  color: white;
+}
+
+.inputs-wrapper,
+.buttons-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%
 }
 
 .remove-marker-btn {
-  background-color: rgb(230, 94, 70);
+  background-color: rgb(224, 114, 95);
 }
 
 .get-position-btn {
-  background-color: rgb(77, 233, 98);
+  background-color: rgb(117, 218, 128);
+}
+
+.center-map-btn {
+  background-color: rgb(90, 133, 226);
+}
+
+.btn:hover {
+  background-color: rgb(79, 83, 65);
+  color: white;
 }
