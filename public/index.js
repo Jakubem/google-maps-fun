@@ -98,10 +98,10 @@ function initMap() {
   /* MARKERS REMOVAL */
 
   // add keyboard shortcut to remove last marker
-  window.addEventListener('keypress', (e) => {
+  window.addEventListener('keypress', (ev) => {
 
     // check code of pressed key
-    if (e.keyCode === 26 ){
+    if (ev.ctrlKey && ev.key === 'z') {
       removeMarker(markers.length - 1);
     }
   })
