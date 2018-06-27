@@ -11,20 +11,26 @@
 <body>
   <div id="map"></div>
   <div class="ui-wrapper">
-    <div class="inputs-wrapper">
-      <label for="lat">
-        Latitude:<br>
-        <input type="number" class='text-input input lat' placeholder="lat" aria-label="latitude input" value="53.1655">
-      </label>
-      <label for="lng">
-        Longitude:<br>
-        <input type="number" name="lng" class='text-input input lng' placeholder="lng" aria-label="longitude input" value="14.4499">
-      </label>
+    <div class="controls-wrapper">
+      <div class="inputs-wrapper">
+        <label for="lat">
+          Latitude:<br>
+          <input type="number" class='text-input input lat' placeholder="lat" aria-label="latitude input" value="55.11302847394203">
+        </label>
+        <label for="lng">
+          Longitude:<br>
+          <input type="number" name="lng" class='text-input input lng' placeholder="lng" aria-label="longitude input" value="14.920054277434815">
+        </label>
+      </div>
+      <div class="buttons-wrapper">
+        <input type="button" class='center-map-btn btn' value="Center map" aria-label="center map position on coordinates">
+        <input type="button" class='get-position-btn btn' value="Get coordinates" aria-label="Get coordinates">
+        <input type="button" class='remove-marker-btn btn' value="Remove marker" aria-label="remove marker">
+      </div>
     </div>
-    <div class="buttons-wrapper">
-      <input type="button" class='center-map-btn btn' value="Center map" aria-label="center map position on coordinates">
-      <input type="button" class='get-position-btn btn' value="Get coordinates" aria-label="Get coordinates">
-      <input type="button" class='remove-marker-btn btn' value="Remove marker" aria-label="remove marker">
+    <div class="output-wrapper">
+      <output name="dragged-pos" class="dragged-pos">
+        </output>
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>

@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 
 // respond to client connection
 io.on('connection', (socket) => {
-  console.log('client is ready (connected)');
+  console.log('client is connected');
 
   socket.emit('connectionEstablished', 'backend connected');
 

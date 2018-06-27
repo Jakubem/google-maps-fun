@@ -1,5 +1,5 @@
 /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
+* element that contains the map. */
 #map {
   height: 100%;
 }
@@ -14,15 +14,20 @@ body {
 
 .ui-wrapper {
   display: flex;
-  justify-content: center;
-  flex-direction: column;
-  background: #363636;
   position: absolute;
   bottom: 0;
   left: 0;
+}
+
+.controls-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background: #585858;
   padding: 10px;
   border-top-right-radius: 4px;
   font-family: 'verdana';
+  z-index: 1;
 }
 
 .btn,
@@ -66,6 +71,25 @@ label {
 }
 
 .btn:hover {
-  background-color: rgb(79, 83, 65);
+  opacity: 0.8;
+}
+
+.output-wrapper {
+}
+
+.dragged-pos {
+  background: #585858;
+  position: absolute;
+  bottom: 0;
+  transition: 0.2s;
+  transform: translate(-280px);
+  opacity: 0;
+  will-change: transform, opacity;
+  z-index: 0;
+  padding: 10px;
+  font-family: 'verdana';
+  border-top-right-radius: 4px;
   color: white;
+  font-family: 'verdana';
+  min-width: 250px;
 }

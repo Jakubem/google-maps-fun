@@ -7,7 +7,13 @@ const lngInput = document.querySelector('.lng');
 // buton which will center the google maps upon clicking
 const centerMapBtn = document.querySelector('.center-map-btn');
 
+// output for dragged marker position
+const draggedPos = document.querySelector('.dragged-pos');
+
+// button for logging position of all markers
 const getPositionBtn = document.querySelector('.get-position-btn');
+
+// button which will remove last marker
 const removeMarkerBtn = document.querySelector('.remove-marker-btn');
 
 // create socket connection
@@ -41,7 +47,7 @@ function initMap() {
     centerMap(latLng);
   });
 
-  
+
   function centerMap(pos) {
     map.setCenter(pos);
   }
@@ -56,19 +62,50 @@ function initMap() {
   let markers = [];
   // create marker based on click position
   function placeMarker(pos) {
+    
     let marker = new google.maps.Marker({
       position: pos,
       map: map,
       draggable: true,
+      // set title based on initial position for each marker
+      title: String(`${pos.lat().toFixed(5)}, ${pos.lng().toFixed(5)}`),
       icon: './assets/img/pin.png',
     });
 
     // push each created marker to markers array
     markers.push(marker)
+
+    /* DRAG MARKER TO SHOW CURRENT LatLng */
+
+    // add drag event to each marker
+    marker.addListener('drag', function () {
+      // https://stackoverflow.com/questions/44140055/getting-draggable-marker-position-lat-lng-in-google-maps-react
+      let lat = marker.getPosition().lat();
+      let lng = marker.getPosition().lng();
+      // reset transform and opacity position of dragged-pos element
+      draggedPos.style.transform = 'none';
+      draggedPos.style.opacity = '1';
+      // render current marker position into dragged-pos element
+      draggedPos.innerHTML = `lat: ${lat.toFixed(5)}, lng: ${lng.toFixed(5)}`;
+    });
+    // set styles to default
+    marker.addListener('dragend', function () {
+      draggedPos.style.transform = 'translate(-280px)';
+      draggedPos.style.opacity = '0';
+    });
   }
 
   /* MARKERS REMOVAL */
 
+  // add keyboard shortcut to remove last marker
+  window.addEventListener('keyup', (e) => {
+
+    // check code of pressed key
+    if (e.code == 'ControlLeft' && e.code == 'KeyZ'){
+      console.log(e)
+      removeMarker(markers.length - 1);
+    }
+  })
   // remove single marker
   removeMarkerBtn.addEventListener('click', () => {
     // pass length of markers array reduced by 1 to removeMarker function
@@ -101,16 +138,22 @@ function initMap() {
       // ...and get each marker position
       let lat = el.getPosition().lat();
       let lng = el.getPosition().lng();
-      markersPosition.push(JSON.parse(`{"lat": ${lat},"lng": ${lng}}`));
-      // markersPosition.push({ lat, lng });
+      // push position of each marker to empty markersPosition array
+      markersPosition.push({
+        lat,
+        lng
+      });
     });
-    
+
+    // create array for all pins
     const allPins = {
-      "pins": markersPosition,
+      'pins': markersPosition,
     };
 
+    // check if there are any pins to send...
     if (allPins.pins.length !== 0) {
       console.log(`send to backend: ${JSON.stringify(allPins)}`);
+      // ... if so, send pins positions to backend as JSON
       socket.emit('pins', JSON.stringify(allPins, null, 2));
     } else {
       console.log('nothing to send')
