@@ -90,7 +90,7 @@ function initMap() {
     });
     // set styles to default
     marker.addListener('dragend', function () {
-      draggedPos.style.transform = 'translate(-280px)';
+      draggedPos.style.transform = 'translate(0, 50px)';
       draggedPos.style.opacity = '0';
     });
   }
