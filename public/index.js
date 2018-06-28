@@ -84,14 +84,12 @@ function initMap() {
       let lng = marker.getPosition().lng();
       // reset transform and opacity position of dragged-pos element
       draggedPos.style.transform = 'none';
-      draggedPos.style.opacity = '1';
       // render current marker position into dragged-pos element
       draggedPos.innerHTML = `lat: ${lat.toFixed(5)}, lng: ${lng.toFixed(5)}`;
     });
     // set styles to default
     marker.addListener('dragend', function () {
       draggedPos.style.transform = 'translate(0, 50px)';
-      draggedPos.style.opacity = '0';
     });
   }
 

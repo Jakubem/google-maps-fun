@@ -85,7 +85,6 @@ label {
   bottom: 0;
   transition: 0.2s;
   transform: translate(0, 50px);
-  opacity: 0;
   will-change: transform, opacity;
   z-index: 0;
   padding: 10px;
