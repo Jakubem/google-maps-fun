@@ -118,37 +118,16 @@ function initMap() {
 
     // set transparency on marker on hover
     marker.addListener
-  }
-
-  /* MARKERS REMOVAL */
-
-  // add keyboard shortcut to remove last marker
-  window.addEventListener('keypress', (ev) => {
-
-    // check code of pressed key
-    if (ev.ctrlKey && ev.key === 'z') {
-      removeMarker(markers.length - 1);
-    }
-  })
-  // remove single marker
-  removeMarkerBtn.addEventListener('click', () => {
-    // pass length of markers array reduced by 1 to removeMarker function
-    removeMarker(markers.length - 1);
-  })
-
-  /**
-   * This function removes a marker
-   * @param { Number } i index of marker to remove  
-   */
-  function removeMarker(i) {
-    if (markers.length > 0) {
-      // remove single google maps marker
-      markers[i].setMap(null);
-      // remove ^ marker object from markers array
-      markers.splice(i, 1);
-    } else {
-      console.log('nothing to remove');
-    }
+    /* MARKERS REMOVAL */
+  
+    // remove single marker
+    removeMarkerBtn.addEventListener('click', () => {
+      // pass length of markers array reduced by 1 to removeMarker function
+      markers.forEach((el, i, arr) => {
+        el.setMap(null);
+      })
+      markers = [];
+    })
   }
 
   /* SEND MARKERS ARRAY TO BACKEND */
