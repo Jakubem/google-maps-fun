@@ -63,7 +63,8 @@ function initMap() {
   let session = [];
   socket.on('session', (data) => {
     session.push(JSON.parse(data));
-    console.log(data.features);
+    // console.log(data.features);
+    console.log(session[0].features);
   })
 
   // loop through GeoJSON to get coordinates of each marker from previous session

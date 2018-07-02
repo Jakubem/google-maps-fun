@@ -28,10 +28,11 @@ io.on('connection', (socket) => {
   // read previous session
 fs.readFile('all-pins.json', 'UTF-8', (err, data)=>{
   if(err){
-    return console.log('no previous session');
+    console.log('no previous session');
+    return;
   }
   // create object for GeoJSON form previous session
-  socket.emit('session', JSON.stringify(data));
+  socket.emit('session', data);
 });
 
   // get all pins from client...
