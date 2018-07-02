@@ -43,10 +43,8 @@ function initMap() {
       lat: Number(latInput.value),
       lng: Number(lngInput.value)
     };
-
     centerMap(latLng);
   });
-
 
   function centerMap(pos) {
     map.setCenter(pos);
@@ -78,7 +76,7 @@ function initMap() {
     /* DRAG MARKER TO SHOW CURRENT LatLng */
 
     // add drag event to each marker
-    marker.addListener('drag', function () {
+    marker.addListener('drag', ()=> {
       // https://stackoverflow.com/questions/44140055/getting-draggable-marker-position-lat-lng-in-google-maps-react
       let lat = marker.getPosition().lat();
       let lng = marker.getPosition().lng();
@@ -88,8 +86,14 @@ function initMap() {
       draggedPos.innerHTML = `lat: ${lat.toFixed(5)}, lng: ${lng.toFixed(5)}`;
     });
     // set styles to default
-    marker.addListener('dragend', function () {
+    marker.addListener('dragend', ()=> {
       draggedPos.style.transform = 'translate(0, 50px)';
+    });
+
+    // remove marker on click
+    marker.addListener('click', (i)=> {
+      marker.setMap(null);
+      markers.splice(i, 1);
     });
   }
 
