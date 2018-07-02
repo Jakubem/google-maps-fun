@@ -34,11 +34,15 @@ io.on('connection', (socket) => {
   })
 });
 
+/**
+ * function for saving all markers in one JSON file
+ * @param {object} data - all pins as JSON
+ */
 function writeToFile(data) {
   fs.writeFileSync('all-pins.json', data);
 }
 
-
+// start server on specified port
 http.listen(port, () => {
   console.log(`listening on ${port}`);
 });

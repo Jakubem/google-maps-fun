@@ -23,6 +23,9 @@ socket.on('connectionEstablished', (data) => {
   console.log(data);
 })
 
+/**
+ * google maps function for initializing new map instance
+ */
 function initMap() {
   let myLatLng = {
     lat: 53.3655,
@@ -46,6 +49,10 @@ function initMap() {
     centerMap(latLng);
   });
 
+  /**
+   * This function will center the map on coordinates from lngInput and latInput
+   * @param {object} pos - 
+   */
   function centerMap(pos) {
     map.setCenter(pos);
   }
@@ -58,9 +65,12 @@ function initMap() {
   });
   //create empty array for all created markers
   let markers = [];
-  // create marker based on click position
+  
+  /**
+   * this function will create new marker based on click position
+   * @param {object} pos - latLng of click event on map
+  */
   function placeMarker(pos) {
-    
     let marker = new google.maps.Marker({
       position: pos,
       map: map,
@@ -78,12 +88,12 @@ function initMap() {
     // add drag event to each marker
     marker.addListener('drag', ()=> {
       // https://stackoverflow.com/questions/44140055/getting-draggable-marker-position-lat-lng-in-google-maps-react
-      let lat = marker.getPosition().lat();
-      let lng = marker.getPosition().lng();
+      let lat = marker.getPosition().lat().toFixed(5);
+      let lng = marker.getPosition().lng().toFixed(5);
       // reset transform and opacity position of dragged-pos element
       draggedPos.style.transform = 'none';
       // render current marker position into dragged-pos element
-      draggedPos.innerHTML = `lat: ${lat.toFixed(5)}, lng: ${lng.toFixed(5)}`;
+      draggedPos.innerHTML = `lat: ${lat}, lng: ${lng}`;
     });
     // set styles to default
     marker.addListener('dragend', ()=> {
@@ -130,7 +140,12 @@ function initMap() {
 
   /* SEND MARKERS ARRAY TO BACKEND */
   getPositionBtn.addEventListener('click', getMyLatLng);
+  
   // get position of each marker as JSON
+
+  /**
+   * This function will create array with lat and lng of each marker
+   */
   function getMyLatLng() {
     // create empty markersPosition array or reset existing one
     markersPosition = [];
