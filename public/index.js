@@ -24,7 +24,7 @@ socket.on('connectionEstablished', (data) => {
 })
 
 /**
- * google maps function for initializing new map instance
+ * built-in Google Maps function for initializing new map instance
  */
 function initMap() {
   let myLatLng = {
@@ -43,15 +43,15 @@ function initMap() {
   /* CENTER MAP ON INPUTS POSITION */
   centerMapBtn.addEventListener('click', () => {
     let latLng = {
-      lat: Number(latInput.value),
-      lng: Number(lngInput.value)
+      lng: Number(lngInput.value),
+      lat: Number(latInput.value)
     };
     centerMap(latLng);
   });
 
   /**
    * This function will center the map on coordinates from lngInput and latInput
-   * @param {object} pos - 
+   * @param {object} pos - latLng
    */
   function centerMap(pos) {
     map.setCenter(pos);
@@ -88,12 +88,12 @@ function initMap() {
     // add drag event to each marker
     marker.addListener('drag', ()=> {
       // https://stackoverflow.com/questions/44140055/getting-draggable-marker-position-lat-lng-in-google-maps-react
-      let lat = marker.getPosition().lat().toFixed(5);
       let lng = marker.getPosition().lng().toFixed(5);
+      let lat = marker.getPosition().lat().toFixed(5);
       // reset transform and opacity position of dragged-pos element
       draggedPos.style.transform = 'none';
       // render current marker position into dragged-pos element
-      draggedPos.innerHTML = `lat: ${lat}, lng: ${lng}`;
+      draggedPos.innerHTML = `lng: ${lng}, lat: ${lat}`;
     });
     // set styles to default
     marker.addListener('dragend', ()=> {
@@ -152,22 +152,30 @@ function initMap() {
     // loop through all created markers...
     markers.forEach((el) => {
       // ...and get each marker position
-      let lat = el.getPosition().lat();
       let lng = el.getPosition().lng();
-      // push position of each marker to empty markersPosition array
+      let lat = el.getPosition().lat();
+      // push position of each marker in GeoJSON format to empty markersPosition array
       markersPosition.push({
-        lat,
-        lng
+          "type": "Feature",
+          "properties": {},
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              lng,
+              lat
+            ]
+          }
       });
     });
 
-    // create array for all pins
+    // create new GeoJSON object with all pins
     const allPins = {
-      'pins': markersPosition,
+        "type": "FeatureCollection",
+        "features": markersPosition,
     };
 
     // check if there are any pins to send...
-    if (allPins.pins.length !== 0) {
+    if (allPins.features.length !== 0) {
       console.log(`send to backend: ${JSON.stringify(allPins)}`);
       // ... if so, send pins positions to backend as JSON
       socket.emit('pins', JSON.stringify(allPins, null, 2));
