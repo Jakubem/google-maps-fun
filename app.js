@@ -5,7 +5,9 @@ const io = require('socket.io')(http);
 const fs = require('fs');
 const path = require('path');
 
-const port = 5500;
+require('dotenv').config()
+
+const port = process.env.APP_PORT || 5500;
 
 // serve public folder as static files
 app.use(express.static('public'))
