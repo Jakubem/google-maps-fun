@@ -35,7 +35,7 @@ function initMap() {
   //initialize new google map instance
   let map = new google.maps.Map(document.getElementById('map'), {
     center: myLatLng,
-    zoom: 20,
+    zoom: 18,
     mapTypeId: 'satellite',
     draggableCursor: 'crosshair',
   });
@@ -59,6 +59,15 @@ function initMap() {
 
   /* MARKERS CREATION */
 
+  // load markers from previous session via socket.io
+  let session = [];
+  socket.on('session', (data) => {
+    session.push(JSON.parse(data));
+    console.log(data.features);
+  })
+
+  // loop through GeoJSON to get coordinates of each marker from previous session
+
   // add marker on click
   map.addListener('click', (e) => {
     placeMarker(e.latLng);
@@ -79,14 +88,14 @@ function initMap() {
       title: String(`${pos.lat().toFixed(5)}, ${pos.lng().toFixed(5)}`),
       icon: './assets/img/pin.png',
     });
-
+    
     // push each created marker to markers array
     markers.push(marker)
 
     /* DRAG MARKER TO SHOW CURRENT LatLng */
 
     // add drag event to each marker
-    marker.addListener('drag', ()=> {
+    marker.addListener('drag', () => {
       // https://stackoverflow.com/questions/44140055/getting-draggable-marker-position-lat-lng-in-google-maps-react
       let lng = marker.getPosition().lng().toFixed(5);
       let lat = marker.getPosition().lat().toFixed(5);
@@ -96,15 +105,18 @@ function initMap() {
       draggedPos.innerHTML = `lng: ${lng}, lat: ${lat}`;
     });
     // set styles to default
-    marker.addListener('dragend', ()=> {
+    marker.addListener('dragend', () => {
       draggedPos.style.transform = 'translate(0, 50px)';
     });
 
     // remove marker on click
-    marker.addListener('click', (i)=> {
+    marker.addListener('click', (i) => {
       marker.setMap(null);
       markers.splice(i, 1);
     });
+
+    // set transparency on marker on hover
+    marker.addListener
   }
 
   /* MARKERS REMOVAL */

@@ -25,6 +25,15 @@ io.on('connection', (socket) => {
 
   socket.emit('connectionEstablished', 'backend connected');
 
+  // read previous session
+fs.readFile('all-pins.json', 'UTF-8', (err, data)=>{
+  if(err){
+    return console.log('no previous session');
+  }
+  // create object for GeoJSON form previous session
+  socket.emit('session', JSON.stringify(data));
+});
+
   // get all pins from client...
   socket.on('pins', (data) => {
     console.log(data);
@@ -35,7 +44,7 @@ io.on('connection', (socket) => {
 });
 
 /**
- * function for saving all markers in one JSON file
+ * function for saving all markers in one GeoJSON file
  * @param {object} data - all pins as JSON
  */
 function writeToFile(data) {
