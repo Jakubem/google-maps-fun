@@ -86,8 +86,16 @@ function initMap() {
       map: map,
       draggable: true,
       // set title based on initial position for each marker
-      title: String(`${pos.lat().toFixed(5)}, ${pos.lng().toFixed(5)}`),
+      title: String(`${pos.lng().toFixed(5)}, ${pos.lat().toFixed(5)}`),
       icon: './assets/img/pin.png',
+      // set custom property on marker
+      customData: {
+        'hops': 'data',
+        'siups': 'another-data',
+        'hyc': 'slightly-different-data',
+        'bum': 'totally-different-data',
+        'tsz': 'mango'
+    }
     });
     
     // push each created marker to markers array
@@ -97,6 +105,8 @@ function initMap() {
 
     // add drag event to each marker
     marker.addListener('drag', () => {
+      // set transparency on marker on hover
+      marker.setOpacity(0.6);
       // https://stackoverflow.com/questions/44140055/getting-draggable-marker-position-lat-lng-in-google-maps-react
       let lng = marker.getPosition().lng().toFixed(5);
       let lat = marker.getPosition().lat().toFixed(5);
@@ -107,17 +117,21 @@ function initMap() {
     });
     // set styles to default
     marker.addListener('dragend', () => {
+      marker.setOpacity(1);
       draggedPos.style.transform = 'translate(0, 50px)';
+      // update title of each marker
+      let lng = marker.getPosition().lng().toFixed(5);
+      let lat = marker.getPosition().lat().toFixed(5);
+      marker.setTitle(String(`${lng}, ${lat}`));
     });
 
     // remove marker on click
     marker.addListener('click', (i) => {
-      marker.setMap(null);
-      markers.splice(i, 1);
+      // marker.setMap(null);
+      // markers.splice(i, 1);
+      console.log(marker)
     });
 
-    // set transparency on marker on hover
-    marker.addListener
     /* MARKERS REMOVAL */
   
     // remove single marker
@@ -146,10 +160,14 @@ function initMap() {
       // ...and get each marker position
       let lng = el.getPosition().lng();
       let lat = el.getPosition().lat();
+      // get custom data from each marker
+      let customProps = el.customData;
       // push position of each marker in GeoJSON format to empty markersPosition array
       markersPosition.push({
           "type": "Feature",
-          "properties": {},
+          "properties": {
+            customProps
+          },
           "geometry": {
             "type": "Point",
             "coordinates": [
