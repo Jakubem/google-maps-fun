@@ -17,8 +17,9 @@ body {
   position: absolute;
   width: 100%;
   bottom: 0;
-  left: 0;
   overflow: hidden;
+  background: lightgray;
+  opacity: 0.9;
 }
 
 .controls-wrapper {
@@ -26,8 +27,7 @@ body {
   justify-content: center;
   flex-direction: column;
   background: #585858;
-  padding: 10px;
-  border-top-right-radius: 4px;
+  padding: 5px;
   font-family: 'verdana';
   z-index: 1;
 }
@@ -36,18 +36,18 @@ body {
 .text-input {
   box-sizing: border-box;
   margin: 3px;
-  height: 35px;
+  height: 30px;
   border: none;
   border-radius: 3px;
 }
 
 .text-input {
   padding: 0;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 label {
-  font-size: 15px;
+  font-size: 12px;
   padding: 0;
   margin: 0;
   color: white;
@@ -76,21 +76,18 @@ label {
   opacity: 0.8;
 }
 
-.output-wrapper {
-}
-
 .dragged-pos {
-  background: #585858;
+  background: rgb(117, 218, 128);
+  color: black;
   position: absolute;
   bottom: 0;
+  right: 0;
   transition: 0.2s;
   transform: translate(0, 50px);
   will-change: transform, opacity;
-  z-index: 0;
-  padding: 10px;
+  padding: 5px;
   font-family: 'verdana';
-  border-top-right-radius: 4px;
-  color: white;
-  font-family: 'verdana';
-  min-width: 250px;
+  min-width: 190px;
+  font-size: 12px;
+  text-align: center;
 }

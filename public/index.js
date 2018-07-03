@@ -38,6 +38,15 @@ function initMap() {
     zoom: 18,
     mapTypeId: 'satellite',
     draggableCursor: 'crosshair',
+
+    // change default ui layout
+    rotateControlOptions: {
+      position: google.maps.ControlPosition.RIGHT_TOP
+    },
+    zoomControl: false,
+    scaleControl: false,
+    streetViewControl: false,
+    fullscreenControl: false
   });
 
   /* CENTER MAP ON INPUTS POSITION */
@@ -75,11 +84,11 @@ function initMap() {
   });
   //create empty array for all created markers
   let markers = [];
-  
+
   /**
    * this function will create new marker based on click position
    * @param {object} pos - latLng of click event on map
-  */
+   */
   function placeMarker(pos) {
     let marker = new google.maps.Marker({
       position: pos,
@@ -95,9 +104,9 @@ function initMap() {
         'hyc': 'slightly-different-data',
         'bum': 'totally-different-data',
         'tsz': 'mango'
-    }
+      }
     });
-    
+
     // push each created marker to markers array
     markers.push(marker)
 
@@ -127,13 +136,12 @@ function initMap() {
 
     // remove marker on click
     marker.addListener('click', (i) => {
-      // marker.setMap(null);
-      // markers.splice(i, 1);
-      console.log(marker)
+      marker.setMap(null);
+      markers.splice(i, 1);
     });
 
     /* MARKERS REMOVAL */
-  
+
     // remove single marker
     removeMarkerBtn.addEventListener('click', () => {
       // pass length of markers array reduced by 1 to removeMarker function
@@ -146,7 +154,7 @@ function initMap() {
 
   /* SEND MARKERS ARRAY TO BACKEND */
   getPositionBtn.addEventListener('click', getMyLatLng);
-  
+
   // get position of each marker as JSON
 
   /**
@@ -164,24 +172,24 @@ function initMap() {
       let customProps = el.customData;
       // push position of each marker in GeoJSON format to empty markersPosition array
       markersPosition.push({
-          "type": "Feature",
-          "properties": {
-            customProps
-          },
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              lng,
-              lat
-            ]
-          }
+        "type": "Feature",
+        "properties": {
+          customProps
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            lng,
+            lat
+          ]
+        }
       });
     });
 
     // create new GeoJSON object with all pins
     const allPins = {
-        "type": "FeatureCollection",
-        "features": markersPosition,
+      "type": "FeatureCollection",
+      "features": markersPosition,
     };
 
     // check if there are any pins to send...
