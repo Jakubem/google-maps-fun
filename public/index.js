@@ -1,20 +1,20 @@
 // input for setting lattitude by the user
-const latInput = document.querySelector('.lat');
+const latInput = document.querySelector('.text-input__lat');
 
 // input for setting langitude by the user
-const lngInput = document.querySelector('.lng');
+const lngInput = document.querySelector('.text-input__lng');
 
 // buton which will center the google maps upon clicking
-const centerMapBtn = document.querySelector('.center-map-btn');
+const centerMapBtn = document.querySelector('.btn__center-map');
 
 // output for dragged marker position
 const draggedPos = document.querySelector('.dragged-pos');
 
 // button for logging position of all markers
-const getPositionBtn = document.querySelector('.get-position-btn');
+const getPositionBtn = document.querySelector('.btn__get-position');
 
 // button which will remove last marker
-const removeMarkerBtn = document.querySelector('.remove-marker-btn');
+const removeMarkerBtn = document.querySelector('.btn__remove-marker');
 
 // create socket connection
 const socket = io('http://localhost:5500');

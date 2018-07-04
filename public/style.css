@@ -18,8 +18,14 @@ body {
   width: 100%;
   bottom: 0;
   overflow: hidden;
-  background: lightgray;
+  background: white;
   opacity: 0.9;
+  transition: 0.2s;
+  will-change: opacity;
+}
+
+.ui-wrapper:hover {
+  opacity: 1;
 }
 
 .controls-wrapper {
@@ -60,15 +66,15 @@ label {
   width: 100%
 }
 
-.remove-marker-btn {
+.btn__remove-marker {
   background-color: rgb(224, 114, 95);
 }
 
-.get-position-btn {
+.btn__get-position {
   background-color: rgb(117, 218, 128);
 }
 
-.center-map-btn {
+.btn__center-map {
   background-color: rgb(90, 133, 226);
 }
 
@@ -87,7 +93,7 @@ label {
   will-change: transform, opacity;
   padding: 5px;
   font-family: 'verdana';
-  min-width: 190px;
+  /* min-width: 190px; */
   font-size: 12px;
   text-align: center;
 }

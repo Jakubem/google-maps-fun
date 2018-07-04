@@ -15,23 +15,38 @@
       <div class="output-wrapper">
           <output name="dragged-pos" class="dragged-pos">
           </output>
-       </div>
+      </div>
       <div class="inputs-wrapper">
         <label for="lat">
           Latitude:<br>
-          <input type="number" class='text-input input lat' placeholder="lat" aria-label="latitude input" value="55.113028">
+          <input type="number" class='text-input text-input__lat' placeholder="lat" aria-label="latitude input" value="55.113028">
         </label>
         <label for="lng">
           Longitude:<br>
-          <input type="number" name="lng" class='text-input input lng' placeholder="lng" aria-label="longitude input" value="14.920054">
+          <input type="number" name="lng" class='text-input text-input__lng' placeholder="lng" aria-label="longitude input" value="14.920054">
         </label>
       </div>
       <div class="buttons-wrapper">
-        <input type="button" class='center-map-btn btn' value="Center map" aria-label="center map position on coordinates">
-        <input type="button" class='get-position-btn btn' value="Get coordinates" aria-label="get coordinates">
-        <input type="button" class='remove-marker-btn btn' value="Reset markers" aria-label="reset markers">
+        <input type="button" class='btn btn__center-map' value="Center map" aria-label="center map position on coordinates">
+        <input type="button" class='btn btn__get-position' value="Get coordinates" aria-label="get each marker coordinates">
+        <input type="button" class='btn btn__remove-marker' value="Reset markers" aria-label="reset markers">
       </div>
     </div>
+    <fieldset class="mode-radio-wrapper">
+      <legend class="mode-radio-legend">Edit mode</legend>
+      <div>
+          <input type="radio" id="edit-marker" name="mode" checked/>
+          <label for="edit-marker">Edit marker</label>
+      </div>
+      <div>
+          <input type="radio" id="delete-marker" name="mode"/>
+          <label for="delete-marker">Delete marker</label>
+      </div>
+      <div>
+          <input type="radio" id="place-marker" name="mode"/>
+          <label for="place-marker">Place marker</label> 
+      </div>
+  </fieldset>  
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
   <script src="./index.js"></script>
