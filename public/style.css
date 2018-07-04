@@ -1,8 +1,10 @@
 /* Always set the map height explicitly to define the size of the div
 * element that contains the map. */
+
 #map {
   height: 100%;
 }
+
 /* Optional: Makes the sample page fill the window. */
 
 html,
@@ -93,7 +95,31 @@ label {
   will-change: transform, opacity;
   padding: 5px;
   font-family: 'verdana';
-  /* min-width: 190px; */
   font-size: 12px;
   text-align: center;
+}
+
+.radio-label {
+  font-family: 'verdana';
+  font-size: 12px;
+  color: black;
+}
+
+.radio {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  padding: 0;
+  border: 2px solid black;
+}
+
+
+.radio-container {
+  padding: 0;
+  
 }

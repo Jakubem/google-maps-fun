@@ -34,17 +34,17 @@
     </div>
     <fieldset class="mode-radio-wrapper">
       <legend class="mode-radio-legend">Edit mode</legend>
+      <div class="radio-container">
+          <input type="radio" class="radio radio__edit-marker" id="edit-marker" name="mode" checked/>
+          <label class="radio-label" for="edit-marker">Edit marker</label>
+      </div class="radio-container">
       <div>
-          <input type="radio" id="edit-marker" name="mode" checked/>
-          <label for="edit-marker">Edit marker</label>
+          <input type="radio" class="radio radio__delete-marker" id="delete-marker" name="mode"/>
+          <label class="radio-label" for="delete-marker">Delete marker</label>
       </div>
-      <div>
-          <input type="radio" id="delete-marker" name="mode"/>
-          <label for="delete-marker">Delete marker</label>
-      </div>
-      <div>
-          <input type="radio" id="place-marker" name="mode"/>
-          <label for="place-marker">Place marker</label> 
+      <div class="radio-container">
+          <input type="radio" class="radio radio__place-marker" id="place-marker" name="mode"/>
+          <label class="radio-label" for="place-marker">Place marker</label> 
       </div>
   </fieldset>  
   </div>
