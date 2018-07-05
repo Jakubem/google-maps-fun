@@ -75,13 +75,17 @@ function initMap() {
   let session = [];
   // get data from backend
   socket.on('session', (data) => {
+    if (data === ''){
+      console.log('no previous session');
+      return;
+    } else 
     session.push(JSON.parse(data));
     // get markers from GeoJSON
     session[0].features.forEach((el) => {
       // create new googlemaps LatLng object (in GeoJSON lng is first)
       let pos = new google.maps.LatLng(el.geometry.coordinates[1], el.geometry.coordinates[0]);
       let props = el.properties;
-      placeMarker(pos, props)
+      placeMarker(pos, props);
     });
   })
 
