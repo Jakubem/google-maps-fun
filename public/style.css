@@ -99,8 +99,8 @@ label {
 }
 
 .dragged-pos {
-  background: rgb(117, 218, 128);
-  color: black;
+  background: #585858;
+  color: white;
   position: absolute;
   bottom: 0;
   right: 0;

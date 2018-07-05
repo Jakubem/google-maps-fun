@@ -73,10 +73,16 @@ function initMap() {
 
   // load markers from previous session via socket.io
   let session = [];
+  // get data from backend
   socket.on('session', (data) => {
     session.push(JSON.parse(data));
-    // console.log(data.features);
-    console.log(session[0].features);
+    // get markers from GeoJSON
+    session[0].features.forEach((el) => {
+      // create new googlemaps LatLng object (in GeoJSON lng is first)
+      let pos = new google.maps.LatLng(el.geometry.coordinates[1], el.geometry.coordinates[0]);
+      let props = el.properties;
+      placeMarker(pos, props)
+    });
   })
 
   // loop through GeoJSON to get coordinates of each marker from previous session
@@ -90,9 +96,10 @@ function initMap() {
 
   /**
    * this function will create new marker based on click position
-   * @param {object} pos - latLng of click event on map
+   * @param {object} pos - latLng of click event on map (custom google maps object with lng() and lat() methods)
+   * @param {object} props - custom properties from GeoJSON
    */
-  function placeMarker(pos) {
+  function placeMarker(pos, props) {
     let marker = new google.maps.Marker({
       position: pos,
       map: map,
@@ -101,8 +108,7 @@ function initMap() {
       title: String(`${pos.lng().toFixed(5)}, ${pos.lat().toFixed(5)}`),
       icon: './assets/img/pin.png',
       // set custom property on marker
-      customData: {
-      }
+      customData: props,
     });
 
     // push each created marker to markers array
@@ -180,9 +186,7 @@ function initMap() {
       // push position of each marker in GeoJSON format to empty markersPosition array
       markersPosition.push({
         "type": "Feature",
-        "properties": {
-          customProps
-        },
+        "properties": customProps,
         "geometry": {
           "type": "Point",
           "coordinates": [
