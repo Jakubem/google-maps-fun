@@ -24,6 +24,8 @@ body {
   opacity: 0.9;
   transition: 0.2s;
   will-change: opacity;
+  margin: 0;
+  padding: 0;
 }
 
 .ui-wrapper:hover {
@@ -38,6 +40,18 @@ body {
   padding: 5px;
   font-family: 'verdana';
   z-index: 1;
+  border-right: 2px solid #585858;
+}
+
+.controls-wrapper--white {
+  background: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 5px;
+  font-family: 'verdana';
+  z-index: 1;
+  border-right: 2px solid #585858;
 }
 
 .btn,
@@ -113,13 +127,27 @@ label {
   display: inline-block;
   width: 16px;
   height: 16px;
-  margin: 0;
-  padding: 0;
+  margin: 5px;
+  margin-right: 0;
   border: 2px solid black;
+  box-sizing: border-box;
+  vertical-align: middle;
 }
-
+.radio:checked {
+  background-color: rgb(224, 114, 95);
+}
 
 .radio-container {
   padding: 0;
-  
+}
+
+.radio-mode-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border: none;
+  margin: 0;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 10px;
 }
