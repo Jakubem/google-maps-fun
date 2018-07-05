@@ -16,6 +16,9 @@ const getPositionBtn = document.querySelector('.btn__get-position');
 // button which will remove last marker
 const removeMarkerBtn = document.querySelector('.btn__remove-marker');
 
+// get radio fields
+const radioValues = document.getElementsByName('edit-mode');
+
 // create socket connection
 const socket = io('http://localhost:5500');
 
@@ -99,11 +102,6 @@ function initMap() {
       icon: './assets/img/pin.png',
       // set custom property on marker
       customData: {
-        'hops': 'data',
-        'siups': 'another-data',
-        'hyc': 'slightly-different-data',
-        'bum': 'totally-different-data',
-        'tsz': 'mango'
       }
     });
 
@@ -115,7 +113,7 @@ function initMap() {
     // add drag event to each marker
     marker.addListener('drag', () => {
       // set transparency on marker on hover
-      marker.setOpacity(0.6);
+      marker.setOpacity(0.4);
       // https://stackoverflow.com/questions/44140055/getting-draggable-marker-position-lat-lng-in-google-maps-react
       let lng = marker.getPosition().lng().toFixed(5);
       let lat = marker.getPosition().lat().toFixed(5);
@@ -134,17 +132,26 @@ function initMap() {
       marker.setTitle(String(`${lng}, ${lat}`));
     });
 
-    // remove marker on click
+    // perform action on marker depending in radio state
     marker.addListener('click', (i) => {
-      marker.setMap(null);
-      markers.splice(i, 1);
+      switch (true){
+        case radioValues[0].checked:
+          console.log("place marker")
+          break;
+        case radioValues[1].checked:
+          console.log("edit marker")
+          break;
+        case radioValues[2].checked:
+          marker.setMap(null);
+          markers.splice(i, 1);
+          break;
+        }
     });
 
     /* MARKERS REMOVAL */
 
-    // remove single marker
+    // remove single all markers
     removeMarkerBtn.addEventListener('click', () => {
-      // pass length of markers array reduced by 1 to removeMarker function
       markers.forEach((el, i, arr) => {
         el.setMap(null);
       })
@@ -155,7 +162,7 @@ function initMap() {
   /* SEND MARKERS ARRAY TO BACKEND */
   getPositionBtn.addEventListener('click', getMyLatLng);
 
-  // get position of each marker as JSON
+  // get position of each marker as GeoJSON
 
   /**
    * This function will create array with lat and lng of each marker

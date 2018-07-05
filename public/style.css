@@ -36,7 +36,7 @@ body {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background: #585858;
+  background: linear-gradient(gray, #585858);
   padding: 5px;
   font-family: 'verdana';
   z-index: 1;
@@ -44,7 +44,7 @@ body {
 }
 
 .controls-wrapper--white {
-  background: white;
+  background: linear-gradient(white, rgb(228, 228, 228));
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -118,6 +118,9 @@ label {
   font-size: 12px;
   color: black;
 }
+.radio-mode-legend {
+  padding: 0;
+}
 
 .radio {
   -webkit-appearance: none;
@@ -127,8 +130,7 @@ label {
   display: inline-block;
   width: 16px;
   height: 16px;
-  margin: 5px;
-  margin-right: 0;
+  margin: 5px 0 5px 0;
   border: 2px solid black;
   box-sizing: border-box;
   vertical-align: middle;
