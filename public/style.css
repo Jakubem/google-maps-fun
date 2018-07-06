@@ -18,13 +18,13 @@ body {
   display: flex;
   position: absolute;
   bottom: 0;
-  /* overflow: hidden; */
   background: white;
   opacity: 0.9;
   transition: 0.2s;
   will-change: opacity;
   margin: 0;
   padding: 0;
+  border-top-right-radius: 5px;
 }
 
 .ui-wrapper:hover {
@@ -40,32 +40,35 @@ body {
   font-family: 'verdana';
   z-index: 1;
   border-right: 1px solid #cfcfcf;
+  border-top-right-radius: 5px;
   max-width: 350px;
 }
 
 .controls-wrapper--white {
-  background: linear-gradient(white, rgb(228, 228, 228));
+  background: linear-gradient(white, rgb(247, 247, 247));
 }
 
 .btn,
 .text-input {
   box-sizing: border-box;
   margin: 3px;
-  height: 30px;
+  height: 27px;
   border: none;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 .text-input {
   padding: 0;
+  max-width: 150px;
   margin-bottom: 10px;
 }
 
 label {
-  font-size: 12px;
+  font-size: 14px;
   padding: 0;
   margin: 0;
   color: white;
+  font-family: 'verdana';
 }
 
 .inputs-wrapper,
@@ -91,13 +94,16 @@ label {
   background-color: rgb(117, 218, 128);
   width: 100%;
   margin: 0;
-  margin-top: 3px;
   padding: 0;
   box-sizing: border-box;
 }
 
 .btn:hover {
-  opacity: 0.8;
+  filter: brightness(1.2);
+}
+
+.btn:active {
+  background-color: azure;
 }
 
 .dragged-pos {
@@ -124,6 +130,7 @@ label {
 }
 .radio-mode-legend {
   padding: 0;
+  font-size: 14px;
 }
 
 .radio {
@@ -131,8 +138,8 @@ label {
   -moz-appearance: none;
   appearance: none;
   display: inline-block;
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   margin: 5px 0 5px 0;
   border: 2px solid black;
   box-sizing: border-box;
