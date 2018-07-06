@@ -64,6 +64,22 @@ function initMap() {
     fullscreenControl: false
   });
 
+  /* INFO WINDOW */
+  /**
+   * 
+   * @param {object} marker - marker object
+   */
+  // let infowindow = new google.maps.InfoWindow({
+  //   content: 'JSON.stringify(marker.customData)',
+  // });
+  // function openInfowindow(marker) {
+  //   infowindow.open(map, marker);
+  // }
+
+  // function closeInfowindow(marker) {
+  //   infowindow.close();
+  // }
+
   /* CENTER MAP ON INPUTS POSITION */
   centerMapBtn.addEventListener('click', () => {
     let latLng = {
@@ -106,7 +122,10 @@ function initMap() {
 
   // add marker on click
   map.addListener('click', (e) => {
-    placeMarker(e.latLng, {});
+    // check if "place marker" radio is checked
+    if (radioValues[0].checked) {
+      placeMarker(e.latLng, {});
+    }
   });
   //create empty array for all created markers
   let markers = [];
@@ -155,30 +174,46 @@ function initMap() {
       marker.setTitle(String(`${lng}, ${lat}`));
     });
 
+
+    /* open infowindow on mouseover and close it on mouseout */
+    // marker.addListener('mouseover', () => {
+    //   openInfowindow(marker);
+    // })
+    // marker.addListener('mouseout', () => {
+    //   closeInfowindow(marker);
+    // })
     // perform action on marker depending in radio state
     marker.addListener('click', (i) => {
       switch (true) {
         // "place marker" radio is selected
         case radioValues[0].checked:
           break;
+
           // "edit marker" radio is selected
         case radioValues[1].checked:
           // set icon for active state
           marker.setIcon('./assets/img/pin--active.png')
+          // get custom properties from existing markers
           let markerProps = JSON.stringify(marker.customData);
+          // output props in textarea and eventOutput
           eventOutput.innerHTML = markerProps;
           propsTextarea.value = markerProps;
+
           propsBtn.addEventListener('click', setCustomProps, true);
-          function setCustomProps(){
+
+          function setCustomProps() {
             // add data from propsTextarea 
             marker.customData = JSON.parse(propsTextarea.value);
-            // set icon for normal state
           }
           rmActiveBtn.addEventListener('click', () => {
             propsBtn.removeEventListener('click', setCustomProps, true);
+            // set icon for normal state
             marker.setIcon('./assets/img/pin.png')
+            propsTextarea.value = '';
+            eventOutput.innerHTML = '';
           })
           break;
+
           // "place marker" radio is selected
         case radioValues[2].checked:
           marker.setMap(null);
@@ -240,7 +275,7 @@ function initMap() {
 
     // check if there are any pins to send...
     if (allPins.features.length !== 0) {
-      console.log(`${JSON.stringify(allPins)}`);
+      console.log(`${JSON.stringify(allPins, null, 2)}`);
       eventOutput.innerHTML = 'send pins to backend'
       // ... if so, send pins positions to backend as JSON
       socket.emit('pins', JSON.stringify(allPins, null, 2));

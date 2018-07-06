@@ -42,6 +42,7 @@ body {
   border-right: 1px solid #cfcfcf;
   border-top-right-radius: 5px;
   max-width: 350px;
+  min-width: 130px;
 }
 
 .controls-wrapper--white {
@@ -57,9 +58,13 @@ body {
   border-radius: 2px;
 }
 
+.btn {
+  width: 100%;
+}
+
 .text-input {
   padding: 0;
-  max-width: 150px;
+  width: 95%;
   margin-bottom: 10px;
 }
 
@@ -180,7 +185,7 @@ label {
   border-radius: 4px;
   word-wrap: break-word;
   box-sizing: border-box;
-
+  font-size: 14px;
 }
 
 .textarea-marker-props-wrapper {
@@ -200,4 +205,41 @@ label {
 
 .output-event {
   min-width: 250px;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 1000px){
+  .controls-wrapper {
+    max-width: 230px;
+  }  
+  .btn__remove-active-state {
+    width: 48%;
+  }
+  
+  .btn__add-marker-props {
+    width: 48%;
+  }
+  .text-input {
+    padding: 0;
+    max-width: 100px;
+    margin-bottom: 10px;
+  }
+  .textarea__marker-props {
+    width: 100%;
+  }
+  .label {
+    font-size: 12px;
+  }
+  .btn {
+    font-size: 10px;
+  }
+  .radio-mode-wrapper {
+    padding: 5px;
+  }
+
+  .radio {
+    width: 12px;
+    height: 12px;
+    margin: 2px;
+  }
 }
