@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Simple Map</title>
+  <title>Google Maps Fun</title>
   <meta name="viewport" content="initial-scale=1.0">
   <meta charset="utf-8">
   <link rel="stylesheet" href="style.css">
@@ -9,19 +10,21 @@
 
 <body>
   <div id="map"></div>
+  <output name="dragged-pos" class="dragged-pos">
+  </output>
   <div class="ui-wrapper">
     <div class="controls-wrapper">
       <div class="output-wrapper">
-          <output name="dragged-pos" class="dragged-pos">
-          </output>
       </div>
       <div class="inputs-wrapper">
         <label for="lat">
-          Latitude:<br>
-          <input type="number" class='text-input text-input__lat' placeholder="lat" aria-label="latitude input" value="55.113028">
+          Latitude:
+          <br>
+          <input type="number" name="lat" class='text-input text-input__lat' placeholder="lat" aria-label="latitude input" value="55.113028">
         </label>
         <label for="lng">
-          Longitude:<br>
+          Longitude:
+          <br>
           <input type="number" name="lng" class='text-input text-input__lng' placeholder="lng" aria-label="longitude input" value="14.920054">
         </label>
       </div>
@@ -31,22 +34,33 @@
         <input type="button" class='btn btn__remove-marker' value="Reset markers" aria-label="reset markers">
       </div>
     </div>
-    <div class="controls-wrapper--white">
+    <div class="controls-wrapper controls-wrapper--white">
       <fieldset class="radio-mode-wrapper">
         <legend class="radio-mode-legend">Edit mode</legend>
         <div class="radio-container">
-            <input type="radio" class="radio radio__place-marker" id="place-marker" name="edit-mode" checked/>
-            <label class="radio-label" for="place-marker">Place marker</label> 
+          <input type="radio" class="radio radio__place-marker" id="place-marker" name="edit-mode" checked/>
+          <label class="label__radio" for="place-marker">Place marker</label>
         </div>
         <div class="radio-container">
-            <input type="radio" class="radio radio__edit-marker" id="edit-marker" name="edit-mode" />
-            <label class="radio-label" for="edit-marker">Edit marker</label>
+          <input type="radio" class="radio radio__edit-marker" id="edit-marker" name="edit-mode" />
+          <label class="label__radio" for="edit-marker">Edit marker</label>
         </div class="radio-container">
         <div>
-            <input type="radio" class="radio radio__delete-marker" id="delete-marker" name="edit-mode"/>
-            <label class="radio-label" for="delete-marker">Delete marker</label>
+          <input type="radio" class="radio radio__delete-marker" id="delete-marker" name="edit-mode" />
+          <label class="label__radio" for="delete-marker">Delete marker</label>
         </div>
-    </fieldset>  
+      </fieldset>
+    </div>
+    <div class="controls-wrapper controls-wrapper--white">
+      <div class="textarea-marker-props-wrapper">
+        <textarea name="textarea-marker-props" id="textarea-marker-props" class="textarea textarea__marker-props" cols="25" >
+        </textarea>
+        <input type="button" class='btn btn__add-marker-props' value="Add props" aria-label="add marker props">
+      </div>
+    </div>
+    <div class="controls-wrapper controls-wrapper--white">
+      <output class="output-marker-props">
+      </output>
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>

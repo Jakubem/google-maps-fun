@@ -17,9 +17,8 @@ body {
 .ui-wrapper {
   display: flex;
   position: absolute;
-  width: 100%;
   bottom: 0;
-  overflow: hidden;
+  /* overflow: hidden; */
   background: white;
   opacity: 0.9;
   transition: 0.2s;
@@ -40,18 +39,12 @@ body {
   padding: 5px;
   font-family: 'verdana';
   z-index: 1;
-  border-right: 2px solid #585858;
+  border-right: 1px solid #cfcfcf;
+  max-width: 350px;
 }
 
 .controls-wrapper--white {
   background: linear-gradient(white, rgb(228, 228, 228));
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding: 5px;
-  font-family: 'verdana';
-  z-index: 1;
-  border-right: 2px solid #585858;
 }
 
 .btn,
@@ -94,6 +87,15 @@ label {
   background-color: rgb(90, 133, 226);
 }
 
+.btn__add-marker-props {
+  background-color: rgb(117, 218, 128);
+  width: 100%;
+  margin: 0;
+  margin-top: 3px;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .btn:hover {
   opacity: 0.8;
 }
@@ -104,16 +106,18 @@ label {
   position: absolute;
   bottom: 0;
   right: 0;
+  opacity: 0;
   transition: 0.2s;
-  transform: translate(0, 50px);
-  will-change: transform, opacity;
+  will-change: opacity;
   padding: 5px;
   font-family: 'verdana';
   font-size: 12px;
   text-align: center;
+  border-top-left-radius: 5px;
+  z-index: 2;
 }
 
-.radio-label {
+.label__radio {
   font-family: 'verdana';
   font-size: 12px;
   color: black;
@@ -126,7 +130,6 @@ label {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-
   display: inline-block;
   width: 16px;
   height: 16px;
@@ -152,4 +155,28 @@ label {
   height: 100%;
   box-sizing: border-box;
   padding: 10px;
+}
+
+.textarea {
+  border: 1px solid #cfcfcf;
+}
+
+.textarea-marker-props-wrapper {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.textarea__marker-props {
+  height: 70%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.output-marker-props {
+  min-width: 250px;
 }

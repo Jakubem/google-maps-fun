@@ -84,6 +84,7 @@ function initMap() {
     session[0].features.forEach((el) => {
       // create new googlemaps LatLng object (in GeoJSON lng is first)
       let pos = new google.maps.LatLng(el.geometry.coordinates[1], el.geometry.coordinates[0]);
+      // get properties from GeoJSON
       let props = el.properties;
       placeMarker(pos, props);
     });
@@ -128,14 +129,14 @@ function initMap() {
       let lng = marker.getPosition().lng().toFixed(5);
       let lat = marker.getPosition().lat().toFixed(5);
       // reset transform and opacity position of dragged-pos element
-      draggedPos.style.transform = 'none';
+      draggedPos.style.opacity = '1';
       // render current marker position into dragged-pos element
       draggedPos.innerHTML = `lng: ${lng}, lat: ${lat}`;
     });
     // set styles to default
     marker.addListener('dragend', () => {
       marker.setOpacity(1);
-      draggedPos.style.transform = 'translate(0, 50px)';
+      draggedPos.style.opacity = '0';
       // update title of each marker
       let lng = marker.getPosition().lng().toFixed(5);
       let lat = marker.getPosition().lat().toFixed(5);
@@ -150,6 +151,7 @@ function initMap() {
           break;
         case radioValues[1].checked:
           console.log("edit marker")
+          
           break;
         case radioValues[2].checked:
           marker.setMap(null);
@@ -160,11 +162,13 @@ function initMap() {
 
     /* MARKERS REMOVAL */
 
-    // remove single all markers
+    // remove all markers
     removeMarkerBtn.addEventListener('click', () => {
       markers.forEach((el, i, arr) => {
+      // remove google map markers
         el.setMap(null);
       })
+      // reset markers array
       markers = [];
     })
   }
