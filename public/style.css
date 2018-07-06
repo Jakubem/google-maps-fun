@@ -35,7 +35,7 @@ body {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background: linear-gradient(gray, #585858);
+  background: linear-gradient(#d8d8d8, #dadada);
   padding: 5px;
   font-family: 'verdana';
   z-index: 1;
@@ -67,7 +67,7 @@ label {
   font-size: 14px;
   padding: 0;
   margin: 0;
-  color: white;
+  color: black;
   font-family: 'verdana';
 }
 
@@ -78,10 +78,12 @@ label {
   width: 100%
 }
 
+.btn__remove-active-state,
 .btn__remove-marker {
   background-color: rgb(224, 114, 95);
 }
 
+.btn__add-marker-props,
 .btn__get-position {
   background-color: rgb(117, 218, 128);
 }
@@ -90,16 +92,23 @@ label {
   background-color: rgb(90, 133, 226);
 }
 
+.btn__remove-active-state {
+  width: 49%;
+}
+
 .btn__add-marker-props {
-  background-color: rgb(117, 218, 128);
-  width: 100%;
+  width: 49%;
+}
+
+.btn__remove-active-state,
+.btn__add-marker-props {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 .btn:hover {
-  filter: brightness(1.2);
+  filter: brightness(1.1);
 }
 
 .btn:active {
@@ -165,14 +174,19 @@ label {
 }
 
 .textarea {
-  border: 1px solid #cfcfcf;
+  border: 6px solid #d8d8d8;
+  background-color: #d8d8d8;
+  color: #1a1a1a;
+  border-radius: 4px;
+  word-wrap: break-word;
+  box-sizing: border-box;
+
 }
 
 .textarea-marker-props-wrapper {
   height: 100%;
   width: 100%;
   margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
@@ -184,6 +198,6 @@ label {
   box-sizing: border-box;
 }
 
-.output-marker-props {
+.output-event {
   min-width: 250px;
 }

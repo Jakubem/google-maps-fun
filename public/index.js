@@ -19,6 +19,18 @@ const removeMarkerBtn = document.querySelector('.btn__remove-marker');
 // get radio fields
 const radioValues = document.getElementsByName('edit-mode');
 
+// textarea for inputing marker properties
+const propsTextarea = document.querySelector('#textarea-marker-props');
+
+// button for submitting props from propsTextarea 
+const propsBtn = document.querySelector('.btn__add-marker-props');
+
+// button for clearing active state from markers 
+const rmActiveBtn = document.querySelector('.btn__remove-active-state');
+
+// output for displaying marker properties
+const eventOutput = document.querySelector('.output-event');
+
 // create socket connection
 const socket = io('http://localhost:5500');
 
@@ -75,11 +87,11 @@ function initMap() {
   let session = [];
   // get data from backend
   socket.on('session', (data) => {
-    if (data === ''){
-      console.log('no previous session');
+    if (data === '') {
+      eventOutput.innerHTML = 'no previous session to load';
       return;
-    } else 
-    session.push(JSON.parse(data));
+    } else
+      session.push(JSON.parse(data));
     // get markers from GeoJSON
     session[0].features.forEach((el) => {
       // create new googlemaps LatLng object (in GeoJSON lng is first)
@@ -94,7 +106,7 @@ function initMap() {
 
   // add marker on click
   map.addListener('click', (e) => {
-    placeMarker(e.latLng);
+    placeMarker(e.latLng, {});
   });
   //create empty array for all created markers
   let markers = [];
@@ -145,19 +157,34 @@ function initMap() {
 
     // perform action on marker depending in radio state
     marker.addListener('click', (i) => {
-      switch (true){
+      switch (true) {
+        // "place marker" radio is selected
         case radioValues[0].checked:
-          console.log("place marker")
           break;
+          // "edit marker" radio is selected
         case radioValues[1].checked:
-          console.log("edit marker")
-          
+          // set icon for active state
+          marker.setIcon('./assets/img/pin--active.png')
+          let markerProps = JSON.stringify(marker.customData);
+          eventOutput.innerHTML = markerProps;
+          propsTextarea.value = markerProps;
+          propsBtn.addEventListener('click', setCustomProps, true);
+          function setCustomProps(){
+            // add data from propsTextarea 
+            marker.customData = JSON.parse(propsTextarea.value);
+            // set icon for normal state
+          }
+          rmActiveBtn.addEventListener('click', () => {
+            propsBtn.removeEventListener('click', setCustomProps, true);
+            marker.setIcon('./assets/img/pin.png')
+          })
           break;
+          // "place marker" radio is selected
         case radioValues[2].checked:
           marker.setMap(null);
           markers.splice(i, 1);
           break;
-        }
+      }
     });
 
     /* MARKERS REMOVAL */
@@ -165,7 +192,7 @@ function initMap() {
     // remove all markers
     removeMarkerBtn.addEventListener('click', () => {
       markers.forEach((el, i, arr) => {
-      // remove google map markers
+        // remove google map markers
         el.setMap(null);
       })
       // reset markers array
@@ -213,11 +240,13 @@ function initMap() {
 
     // check if there are any pins to send...
     if (allPins.features.length !== 0) {
-      console.log(`send to backend: ${JSON.stringify(allPins)}`);
+      console.log(`${JSON.stringify(allPins)}`);
+      eventOutput.innerHTML = 'send pins to backend'
       // ... if so, send pins positions to backend as JSON
       socket.emit('pins', JSON.stringify(allPins, null, 2));
     } else {
-      console.log('nothing to send')
+      eventOutput.innerHTML = 'session cleared'
+      socket.emit('pins', '');
     }
   }
 }
