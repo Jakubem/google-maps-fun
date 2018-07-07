@@ -64,22 +64,6 @@ function initMap() {
     fullscreenControl: false
   });
 
-  /* INFO WINDOW */
-  /**
-   * 
-   * @param {object} marker - marker object
-   */
-  // let infowindow = new google.maps.InfoWindow({
-  //   content: 'JSON.stringify(marker.customData)',
-  // });
-  // function openInfowindow(marker) {
-  //   infowindow.open(map, marker);
-  // }
-
-  // function closeInfowindow(marker) {
-  //   infowindow.close();
-  // }
-
   /* CENTER MAP ON INPUTS POSITION */
   centerMapBtn.addEventListener('click', () => {
     let latLng = {
@@ -154,7 +138,7 @@ function initMap() {
 
     // add drag event to each marker
     marker.addListener('drag', () => {
-      // set transparency on marker on hover
+      // set transparency on marker on drag
       marker.setOpacity(0.4);
       // https://stackoverflow.com/questions/44140055/getting-draggable-marker-position-lat-lng-in-google-maps-react
       let lng = marker.getPosition().lng().toFixed(5);
@@ -174,14 +158,38 @@ function initMap() {
       marker.setTitle(String(`${lng}, ${lat}`));
     });
 
+    /* INFO WINDOW */
+    let content = JSON.stringify(marker.customData, null, 2)
+    let infowindow = new google.maps.InfoWindow({
+      content: content,
+    });
+
+    /**
+     * function that opens infowindow on hover
+     * 
+     */
+    function openInfowindow() {
+      infowindow.open(map, marker);
+    }
+    /**
+     * function that closes infowindow on mouseout
+     * 
+     */
+    function closeInfowindow() {
+      infowindow.close(map, marker);
+    }
 
     /* open infowindow on mouseover and close it on mouseout */
-    // marker.addListener('mouseover', () => {
-    //   openInfowindow(marker);
-    // })
-    // marker.addListener('mouseout', () => {
-    //   closeInfowindow(marker);
-    // })
+    marker.addListener('mouseover', () => {
+      if (radioValues[1].checked) {
+        openInfowindow();
+      }
+    })
+    marker.addListener('mouseout', () => {
+      if (radioValues[1].checked) {
+        closeInfowindow();
+      }
+    })
     // perform action on marker depending in radio state
     marker.addListener('click', (i) => {
       switch (true) {
@@ -192,18 +200,19 @@ function initMap() {
           // "edit marker" radio is selected
         case radioValues[1].checked:
           // set icon for active state
-          marker.setIcon('./assets/img/pin--active.png')
+          let icon = './assets/img/pin--active.png';
+          marker.setIcon(icon);
           // get custom properties from existing markers
           let markerProps = JSON.stringify(marker.customData);
           // output props in textarea and eventOutput
           eventOutput.innerHTML = markerProps;
           propsTextarea.value = markerProps;
-
           propsBtn.addEventListener('click', setCustomProps, true);
-
           function setCustomProps() {
             // add data from propsTextarea 
             marker.customData = JSON.parse(propsTextarea.value);
+            propsBtn.removeEventListener('click', setCustomProps, true);
+            marker.setIcon('./assets/img/pin.png')
           }
           rmActiveBtn.addEventListener('click', () => {
             propsBtn.removeEventListener('click', setCustomProps, true);
