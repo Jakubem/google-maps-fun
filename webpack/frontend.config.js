@@ -62,6 +62,9 @@ module.exports = {
       hash: false,
       template: './index.html',
       filename: './index.html',
+      minify: {
+        collapseWhitespace: true,
+      }
     }),
     new FriendlyErrorsWebpackPlugin({
       clearConsole: true,
