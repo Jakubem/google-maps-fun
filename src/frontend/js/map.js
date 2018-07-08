@@ -31,11 +31,7 @@ const rmActiveBtn = document.querySelector('.btn__remove-active-state');
 // output for displaying marker properties
 const eventOutput = document.querySelector('.output-event');
 
-// create socket connection
-const socket = io('http://localhost:5500');
-socket.on('connectionEstablished', (data) => {
-  console.log(data);
-})
+const socket = require('./socket.js').socket;
 
 /**
  * built-in Google Maps function for initializing new map instance
