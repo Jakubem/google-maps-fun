@@ -10,12 +10,12 @@ require('dotenv').config()
 const port = process.env.APP_PORT || 5500;
 
 // serve public folder as static files
-app.use(express.static('public'))
+app.use(express.static('dist'))
 
 // serve index.html as root
 app.get('/', (req, res) => {
   res.sendFile(
-    path.join(__dirname, '/index.html'),
+    path.join(__dirname, 'index.html'),
   );
 });
 

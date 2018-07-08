@@ -126,7 +126,7 @@ function initMap() {
       draggable: true,
       // set title based on initial position for each marker
       title: String(`${pos.lng().toFixed(5)}, ${pos.lat().toFixed(5)}`),
-      icon: './assets/img/pin.png',
+      icon: './pin.png',
       // set custom property on marker
       customData: props,
     });
@@ -159,7 +159,7 @@ function initMap() {
     });
 
     /* INFO WINDOW */
-    let content = JSON.stringify(marker.customData, null, 2)
+    let content = JSON.stringify(marker.customData)
     let infowindow = new google.maps.InfoWindow({
       content: content,
     });
@@ -200,7 +200,7 @@ function initMap() {
           // "edit marker" radio is selected
         case radioValues[1].checked:
           // set icon for active state
-          let icon = './assets/img/pin--active.png';
+          let icon = './pin--active.png';
           marker.setIcon(icon);
           // get custom properties from existing markers
           let markerProps = JSON.stringify(marker.customData);
@@ -212,12 +212,12 @@ function initMap() {
             // add data from propsTextarea 
             marker.customData = JSON.parse(propsTextarea.value);
             propsBtn.removeEventListener('click', setCustomProps, true);
-            marker.setIcon('./assets/img/pin.png')
+            marker.setIcon('./pin.png')
           }
           rmActiveBtn.addEventListener('click', () => {
             propsBtn.removeEventListener('click', setCustomProps, true);
             // set icon for normal state
-            marker.setIcon('./assets/img/pin.png')
+            marker.setIcon('./pin.png')
             propsTextarea.value = '';
             eventOutput.innerHTML = '';
           })
@@ -254,7 +254,7 @@ function initMap() {
    */
   function getMyLatLng() {
     // create empty markersPosition array or reset existing one
-    markersPosition = [];
+    let markersPosition = [];
     // loop through all created markers...
     markers.forEach((el) => {
       // ...and get each marker position
@@ -294,3 +294,5 @@ function initMap() {
     }
   }
 }
+// add initMap to global scope (https://stackoverflow.com/questions/40575637/how-to-use-webpack-with-google-maps-api)
+window.initMap = initMap;
