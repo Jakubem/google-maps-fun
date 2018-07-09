@@ -185,6 +185,7 @@ function initMap() {
         closeInfowindow();
       }
     })
+
     // perform action on marker depending in radio state
     marker.addListener('click', (i) => {
       switch (true) {
@@ -202,12 +203,17 @@ function initMap() {
           // output props in textarea and eventOutput
           eventOutput.innerHTML = markerProps;
           propsTextarea.value = markerProps;
-          propsBtn.addEventListener('click', setCustomProps, true);
+
+          propsBtn.addEventListener('click', () => {
+            setCustomProps();
+          }, true);
+
+          // propsBtn.addEventListener('click', setCustomProps, true);
           function setCustomProps() {
             // add data from propsTextarea 
             marker.customData = JSON.parse(propsTextarea.value);
-            propsBtn.removeEventListener('click', setCustomProps, true);
             marker.setIcon('./pin.png')
+            propsBtn.removeEventListener('click', setCustomProps, true);
           }
           rmActiveBtn.addEventListener('click', () => {
             propsBtn.removeEventListener('click', setCustomProps, true);
