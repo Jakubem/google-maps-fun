@@ -1,3 +1,7 @@
+const socket = require('./socket.js').socket;
+const strToObj = require('./string.js').strToObj;
+const objToStr = require('./string.js').objToStr;
+
 // input for setting lattitude by the user
 const latInput = document.querySelector('.text-input__lat');
 
@@ -22,16 +26,14 @@ const radioValues = document.getElementsByName('edit-mode');
 // textarea for inputing marker properties
 const propsTextarea = document.querySelector('#textarea-marker-props');
 
-// button for submitting props from propsTextarea 
+// button for submitting props from propsTextarea
 const propsBtn = document.querySelector('.btn__add-marker-props');
 
-// button for clearing active state from markers 
+// button for clearing active state from markers
 const rmActiveBtn = document.querySelector('.btn__remove-active-state');
 
 // output for displaying marker properties
 const eventOutput = document.querySelector('.output-event');
-
-const socket = require('./socket.js').socket;
 
 /**
  * built-in Google Maps function for initializing new map instance
