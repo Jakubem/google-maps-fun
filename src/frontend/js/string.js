@@ -10,7 +10,7 @@ export function strToObj(str) {
     let val = parts[1].trim();
     return `"${key}": "${val}"`;
   });
-  return `{${splittedLines}},`;
+  return `{${splittedLines}}`;
 }
 
 /**
@@ -20,6 +20,6 @@ export function strToObj(str) {
 export function objToStr(obj) {
   let keys = Object.keys(obj);
   let lines = keys.map(el => `${el}: ${obj[el]}`);
-  let linesJoined = lines.join('\n');
-  return JSON.stringify(linesJoined);
+  let linesJoined = lines.join(',\n');
+  return linesJoined;
 }

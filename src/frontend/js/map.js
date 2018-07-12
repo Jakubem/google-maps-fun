@@ -1,6 +1,13 @@
-const socket = require('./socket.js').socket;
-const strToObj = require('./string.js').strToObj;
-const objToStr = require('./string.js').objToStr;
+import {
+  strToObj
+} from './string.js';
+import {
+  objToStr
+} from './string.js';
+import {
+  socket
+} from './socket.js';
+
 
 // input for setting lattitude by the user
 const latInput = document.querySelector('.text-input__lat');
@@ -156,9 +163,9 @@ function initMap() {
     });
 
     /* INFO WINDOW */
-    let content = JSON.stringify(marker.customData)
+    let content = marker.customData
     let infowindow = new google.maps.InfoWindow({
-      content: content,
+      content: objToStr(content),
     });
 
     /**
@@ -201,19 +208,19 @@ function initMap() {
           let icon = './pin--active.png';
           marker.setIcon(icon);
           // get custom properties from existing markers
-          let markerProps = JSON.stringify(marker.customData);
+          let markerProps = marker.customData;
           // output props in textarea and eventOutput
-          eventOutput.innerHTML = markerProps;
-          propsTextarea.value = markerProps;
+          eventOutput.innerHTML = objToStr(markerProps);
+          propsTextarea.value = objToStr(markerProps);
 
           propsBtn.addEventListener('click', () => {
             setCustomProps();
           }, true);
 
-          // propsBtn.addEventListener('click', setCustomProps, true);
           function setCustomProps() {
             // add data from propsTextarea 
-            marker.customData = JSON.parse(propsTextarea.value);
+            console.log(strToObj(propsTextarea.value));
+            marker.customData = JSON.parse(strToObj(propsTextarea.value));
             marker.setIcon('./pin.png')
             propsBtn.removeEventListener('click', setCustomProps, true);
           }
@@ -300,4 +307,6 @@ function initMap() {
 // add initMap to global scope (https://stackoverflow.com/questions/40575637/how-to-use-webpack-with-google-maps-api)
 window.initMap = initMap;
 
-export {initMap};
+export {
+  initMap
+};
