@@ -4,7 +4,8 @@
   "description": "fun with google maps",
   "main": "index.js",
   "scripts": {
-    "frontend": "webpack -p --watch --config webpack/frontend.config.js",
+    "frontend": "webpack -d --watch --config webpack/frontend.config.js",
+    "frontend-p": "webpack -p --watch --config webpack/frontend.config.js",
     "backend": "webpack -p --watch --config webpack/backend.config.js"
   },
   "repository": {
