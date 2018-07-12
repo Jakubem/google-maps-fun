@@ -1,13 +1,16 @@
 /**
  * 
- * @param {str} str - string to be converted to object
+ * @param {str} str - string to be converted to object (supports multiline)
  */
 export function strToObj(str) {
-  let parts = str.split(":");
-  let key = parts[0].trim();
-  let obj = {}
-  obj[key] = parts[1].trim();
-  return `${JSON.stringify(obj)},`;
+  let textAreaLines = str.split(',\n');
+  let splittedLines = textAreaLines.map((el) => {
+    let parts = el.split(":");
+    let key = parts[0].trim();
+    let val = parts[1].trim();
+    return `"${key}": "${val}"`;
+  });
+  return `{${splittedLines}},`;
 }
 
 /**
