@@ -18,7 +18,8 @@ export function strToObj(str) {
  * @param {obj} obj - obj to be converted to string
  */ 
 export function objToStr(obj) {
-  let key = Object.keys(obj)[0]
-  let value = obj[key];
-  return `${key}: ${value}`
+  let keys = Object.keys(obj);
+  let lines = keys.map(el => `${el}: ${obj[el]}`);
+  let linesJoined = lines.join('\n');
+  return JSON.stringify(linesJoined);
 }
