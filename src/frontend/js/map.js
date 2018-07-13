@@ -140,10 +140,8 @@ function initMap() {
       // https://stackoverflow.com/questions/44140055/getting-draggable-marker-position-lat-lng-in-google-maps-react
       let lng = marker.getPosition().lng().toFixed(5);
       let lat = marker.getPosition().lat().toFixed(5);
-      // reset transform and opacity position of dragged-pos element
-      draggedPos.style.opacity = '1';
-      // render current marker position into dragged-pos element
-      draggedPos.innerHTML = `lng: ${lng}, lat: ${lat}`;
+      draggedPos.style.opacity = '1'; // reset transform and opacity position of dragged-pos element
+      draggedPos.innerHTML = `lng: ${lng}, lat: ${lat}`; // render current marker position into dragged-pos element
     });
     // set styles to default
     marker.addListener('dragend', () => {
@@ -155,22 +153,24 @@ function initMap() {
       marker.setTitle(String(`${lng}, ${lat}`));
     });
 
+    marker.addListener('mouseover', showMarkerProps)
+
+    function showMarkerProps(){
+      eventOutput.value = marker.customProps;
+    }
+
     // perform action on marker depending in radio state
     marker.addListener('click', (i) => {
       switch (true) {
-        // "place marker" radio is selected
-        case radioValues[0].checked:
-          break;
-
-          // "edit marker" radio is selected
-        case radioValues[1].checked:
+        case radioValues[0].checked:// "place marker" radio is selected
+        break;
+        case radioValues[1].checked: // "edit marker" radio is selected
+          removeActiveState();
           setActiveState();
           propsBtn.addEventListener('click', setCustomProps, false);
           rmActiveBtn.addEventListener('click', removeActiveState, false)
           break;
-
-          // "place marker" radio is selected
-        case radioValues[2].checked:
+        case radioValues[2].checked:// "place marker" radio is selected
           marker.setMap(null);
           markers.splice(i, 1);
           break;
@@ -187,6 +187,7 @@ function initMap() {
       eventOutput.innerHTML = objToStr(markerProps); // output props in textarea and eventOutput
       propsTextarea.value = objToStr(markerProps);
     }
+    
     /**
      * function for setting value from textarea as custom marker props 
      */
@@ -195,6 +196,7 @@ function initMap() {
       marker.setIcon('./pin.png') // set default icon
       propsBtn.removeEventListener('click', setCustomProps, false);
     }
+    
     /**
      * function for removing active state from markers
      */
