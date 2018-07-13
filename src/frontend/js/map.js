@@ -1,13 +1,6 @@
-import {
-  strToObj
-} from './string.js';
-import {
-  objToStr
-} from './string.js';
-import {
-  socket
-} from './socket.js';
-
+import {strToObj} from './string.js';
+import {objToStr} from './string.js';
+import {socket} from './socket.js';
 
 // input for setting lattitude by the user
 const latInput = document.querySelector('.text-input__lat');
@@ -47,8 +40,8 @@ const eventOutput = document.querySelector('.output-event');
  */
 function initMap() {
   let myLatLng = {
-    lat: 53.3655,
-    lng: 14.6499
+    lat: -18.9520,
+    lng: 14.6199
   };
 
   //initialize new google map instance
@@ -162,39 +155,6 @@ function initMap() {
       marker.setTitle(String(`${lng}, ${lat}`));
     });
 
-    /* INFO WINDOW */
-    let content = marker.customData
-    let infowindow = new google.maps.InfoWindow({
-      content: objToStr(content),
-    });
-
-    /**
-     * function that opens infowindow on hover
-     * 
-     */
-    function openInfowindow() {
-      infowindow.open(map, marker);
-    }
-    /**
-     * function that closes infowindow on mouseout
-     * 
-     */
-    function closeInfowindow() {
-      infowindow.close(map, marker);
-    }
-
-    /* open infowindow on mouseover and close it on mouseout */
-    marker.addListener('mouseover', () => {
-      if (radioValues[1].checked) {
-        openInfowindow();
-      }
-    })
-    marker.addListener('mouseout', () => {
-      if (radioValues[1].checked) {
-        closeInfowindow();
-      }
-    })
-
     // perform action on marker depending in radio state
     marker.addListener('click', (i) => {
       switch (true) {
@@ -204,33 +164,9 @@ function initMap() {
 
           // "edit marker" radio is selected
         case radioValues[1].checked:
-          // set icon for active state
-          let icon = './pin--active.png';
-          marker.setIcon(icon);
-          // get custom properties from existing markers
-          let markerProps = marker.customData;
-          // output props in textarea and eventOutput
-          eventOutput.innerHTML = objToStr(markerProps);
-          propsTextarea.value = objToStr(markerProps);
-
-          propsBtn.addEventListener('click', () => {
-            setCustomProps();
-          }, true);
-
-          function setCustomProps() {
-            // add data from propsTextarea 
-            console.log(strToObj(propsTextarea.value));
-            marker.customData = JSON.parse(strToObj(propsTextarea.value));
-            marker.setIcon('./pin.png')
-            propsBtn.removeEventListener('click', setCustomProps, true);
-          }
-          rmActiveBtn.addEventListener('click', () => {
-            propsBtn.removeEventListener('click', setCustomProps, true);
-            // set icon for normal state
-            marker.setIcon('./pin.png')
-            propsTextarea.value = '';
-            eventOutput.innerHTML = '';
-          })
+          setActiveState();
+          propsBtn.addEventListener('click', setCustomProps, false);
+          rmActiveBtn.addEventListener('click', removeActiveState, false)
           break;
 
           // "place marker" radio is selected
@@ -240,6 +176,34 @@ function initMap() {
           break;
       }
     });
+    
+    /**
+     * set marker to edit mode
+     */
+    function setActiveState() {
+      const icon = './pin--active.png'; // set icon for active state
+      marker.setIcon(icon);
+      const markerProps = marker.customData; // get custom properties from existing markers
+      eventOutput.innerHTML = objToStr(markerProps); // output props in textarea and eventOutput
+      propsTextarea.value = objToStr(markerProps);
+    }
+    /**
+     * function for setting value from textarea as custom marker props 
+     */
+    function setCustomProps() {
+      marker.customData = strToObj(propsTextarea.value); // add data from propsTextarea 
+      marker.setIcon('./pin.png') // set default icon
+      propsBtn.removeEventListener('click', setCustomProps, false);
+    }
+    /**
+     * function for removing active state from markers
+     */
+    function removeActiveState() {
+      marker.setIcon('./pin.png') // set icon for normal state
+      propsTextarea.value = '';
+      eventOutput.innerHTML = '';
+      propsBtn.removeEventListener('click', setCustomProps, false);
+    }
 
     /* MARKERS REMOVAL */
 

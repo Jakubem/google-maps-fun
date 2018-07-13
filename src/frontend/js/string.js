@@ -1,25 +1,25 @@
 /**
- * 
- * @param {str} str - string to be converted to object (supports multiline)
+ * this function will convert formatted string into object
+ * @param {str} str - string to be converted to object
  */
 export function strToObj(str) {
-  let textAreaLines = str.split(',\n');
+  const textAreaLines = str.split(',\n');
   let splittedLines = textAreaLines.map((el) => {
-    let parts = el.split(":");
+    const parts = el.split(":");
     let key = parts[0].trim();
     let val = parts[1].trim();
     return `"${key}": "${val}"`;
   });
-  return `{${splittedLines}}`;
+  return JSON.parse(`{${splittedLines}}`);
 }
 
 /**
- * 
+ * this function will convert object to formatted string
  * @param {obj} obj - obj to be converted to string
  */ 
 export function objToStr(obj) {
-  let keys = Object.keys(obj);
-  let lines = keys.map(el => `${el}: ${obj[el]}`);
-  let linesJoined = lines.join(',\n');
+  const keys = Object.keys(obj);
+  const lines = keys.map(el => `${el}: ${obj[el]}`);
+  const linesJoined = lines.join(',\n');
   return linesJoined;
 }
