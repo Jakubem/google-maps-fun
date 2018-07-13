@@ -40,8 +40,8 @@ const eventOutput = document.querySelector('.output-event');
  */
 function initMap() {
   let myLatLng = {
-    lat: -18.9520,
-    lng: 14.6199
+    lat: -18.9511,
+    lng: 14.6179
   };
 
   //initialize new google map instance
@@ -126,6 +126,7 @@ function initMap() {
       icon: './pin.png',
       // set custom property on marker
       customData: props,
+      isActive: false
     });
 
     // push each created marker to markers array
@@ -138,8 +139,8 @@ function initMap() {
       // set transparency on marker on drag
       marker.setOpacity(0.4);
       // https://stackoverflow.com/questions/44140055/getting-draggable-marker-position-lat-lng-in-google-maps-react
-      let lng = marker.getPosition().lng().toFixed(5);
-      let lat = marker.getPosition().lat().toFixed(5);
+      const lng = marker.getPosition().lng().toFixed(5);
+      const lat = marker.getPosition().lat().toFixed(5);
       draggedPos.style.opacity = '1'; // reset transform and opacity position of dragged-pos element
       draggedPos.innerHTML = `lng: ${lng}, lat: ${lat}`; // render current marker position into dragged-pos element
     });
@@ -148,15 +149,23 @@ function initMap() {
       marker.setOpacity(1);
       draggedPos.style.opacity = '0';
       // update title of each marker
-      let lng = marker.getPosition().lng().toFixed(5);
-      let lat = marker.getPosition().lat().toFixed(5);
+      const lng = marker.getPosition().lng().toFixed(5);
+      const lat = marker.getPosition().lat().toFixed(5);
       marker.setTitle(String(`${lng}, ${lat}`));
     });
 
-    marker.addListener('mouseover', showMarkerProps)
+    marker.addListener('mouseover', showMarkerProps, false);
 
+    /**
+     * this function will output custom marker data in eventOutput on mouseover
+     */
     function showMarkerProps(){
-      eventOutput.value = marker.customProps;
+      let props = objToStr(marker.customData);
+      if (!props) {
+        eventOutput.value = "no custom props";
+      } else {
+        eventOutput.value = props;
+      }
     }
 
     // perform action on marker depending in radio state
@@ -165,10 +174,15 @@ function initMap() {
         case radioValues[0].checked:// "place marker" radio is selected
         break;
         case radioValues[1].checked: // "edit marker" radio is selected
-          removeActiveState();
-          setActiveState();
-          propsBtn.addEventListener('click', setCustomProps, false);
-          rmActiveBtn.addEventListener('click', removeActiveState, false)
+          if (marker.isActive) {
+            removeActiveState();
+            marker.isActive = false;
+          } else {
+            setActiveState();
+            propsBtn.addEventListener('click', setCustomProps, false);
+            rmActiveBtn.addEventListener('click', removeActiveState, false)
+            marker.isActive = true;
+          };
           break;
         case radioValues[2].checked:// "place marker" radio is selected
           marker.setMap(null);
