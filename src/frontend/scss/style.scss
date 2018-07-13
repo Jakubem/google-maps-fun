@@ -203,6 +203,7 @@ label {
 .output-event {
   min-width: 250px;
   font-size: 14px;
+  word-wrap: break-word;
 }
 
 @media screen and (max-width: 1000px){
