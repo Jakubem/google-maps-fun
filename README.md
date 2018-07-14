@@ -17,4 +17,5 @@
 > `npm run frontend` - Compile frontend to `dist` folder
 
 ### `dotenv` file structure:
+```PG_URL=postgresql://dbuser:secretpassword@database.server.com:3211/mydb```
 ```APP_PORT=XXXX```
