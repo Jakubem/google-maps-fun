@@ -1,6 +1,6 @@
 const path = require('path');
 const bundlePath = path.join(__dirname, '../', 'bin');
-
+const webpack = require('webpack')
 const NodemonPlugin = require('nodemon-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
@@ -8,6 +8,10 @@ const nodeExternals = require('webpack-node-externals');
 module.exports = {
   entry: './src/backend/app.js',
   target: 'node',
+  node: {
+    __dirname: false,
+    __filename: false,
+  },
   module: {
     rules: [
       {
@@ -37,7 +41,7 @@ module.exports = {
     }),
     new NodemonPlugin({
       quiet: true,
-    })
+    }),
   ]
 };
  

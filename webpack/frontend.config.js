@@ -2,8 +2,7 @@ const path = require('path');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const bundlePath = path.join(__dirname, '../', 'dist');
+const bundlePath = path.join(__dirname, '../', 'dist/public');
 
 module.exports = {
   entry: './src/frontend/js/main.js',
@@ -57,15 +56,6 @@ module.exports = {
   },
   stats: 'errors-only',
   plugins: [
-    new HtmlWebpackPlugin({
-      inject: true,
-      hash: false,
-      template: './index.html',
-      filename: './index.html',
-      minify: {
-        collapseWhitespace: true,
-      }
-    }),
     new FriendlyErrorsWebpackPlugin({
       clearConsole: true,
     }),
@@ -77,6 +67,9 @@ module.exports = {
     new CopyWebpackPlugin([
       // ugh...
       { from: 'src/assets/img', to: '' },
+    ]),
+    new CopyWebpackPlugin([
+      { from: 'views', to: '../views' },
     ]),
   ],
 };

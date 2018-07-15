@@ -1,5 +1,6 @@
 import {strToObj} from './string.js';
 import {objToStr} from './string.js';
+import {objToHtml} from './string.js';
 import {socket} from './socket.js';
 
 // input for setting lattitude by the user
@@ -160,11 +161,11 @@ function initMap() {
      * this function will output custom marker data in eventOutput on mouseover
      */
     function showMarkerProps(){
-      let props = objToStr(marker.customData);
+      let props = objToHtml(marker.customData);
       if (!props) {
-        eventOutput.value = "no custom props";
+        eventOutput.innerHTML = "no custom props";
       } else {
-        eventOutput.value = props;
+        eventOutput.innerHTML = props;
       }
     }
 

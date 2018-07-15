@@ -23,3 +23,13 @@ export function objToStr(obj) {
   const linesJoined = lines.join(',\n');
   return linesJoined;
 }
+/**
+ * this function will convert object to formatted string
+ * @param {obj} obj - obj to be converted to string
+ */ 
+export function objToHtml(obj) {
+  const keys = Object.keys(obj);
+  const lines = keys.map(el => `${el}: ${obj[el]}`);
+  const linesJoined = lines.join(',<br>');
+  return linesJoined;
+}
