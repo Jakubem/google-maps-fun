@@ -94,13 +94,11 @@ label {
   background-color: rgb(90, 133, 226);
 }
 
+.btn__add-marker-props,
 .btn__remove-active-state {
   width: 49%;
 }
 
-.btn__add-marker-props {
-  width: 49%;
-}
 
 .btn__remove-active-state,
 .btn__add-marker-props {
@@ -151,7 +149,7 @@ label {
   display: inline-block;
   width: 14px;
   height: 14px;
-  margin: 5px 0 5px 0;
+  margin: 5px 3px 5px 0;
   border: 2px solid black;
   box-sizing: border-box;
   vertical-align: middle;
@@ -210,13 +208,6 @@ label {
   .controls-wrapper {
     max-width: 230px;
   }  
-  .btn__remove-active-state {
-    width: 48%;
-  }
-  
-  .btn__add-marker-props {
-    width: 48%;
-  }
   .text-input {
     padding: 0;
     max-width: 100px;
