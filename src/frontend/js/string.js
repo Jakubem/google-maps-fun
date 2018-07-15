@@ -16,20 +16,11 @@ export function strToObj(str) {
 /**
  * this function will convert object to formatted string
  * @param {obj} obj - obj to be converted to string
+ * @param {str} br - type of line break
  */ 
-export function objToStr(obj) {
+export function objToStr(obj, br) {
   const keys = Object.keys(obj);
   const lines = keys.map(el => `${el}: ${obj[el]}`);
-  const linesJoined = lines.join(',\n');
-  return linesJoined;
-}
-/**
- * this function will convert object to formatted string
- * @param {obj} obj - obj to be converted to string
- */ 
-export function objToHtml(obj) {
-  const keys = Object.keys(obj);
-  const lines = keys.map(el => `${el}: ${obj[el]}`);
-  const linesJoined = lines.join(',<br>');
+  const linesJoined = lines.join(`,${br}`);
   return linesJoined;
 }

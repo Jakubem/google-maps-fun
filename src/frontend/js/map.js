@@ -1,6 +1,5 @@
 import {strToObj} from './string.js';
 import {objToStr} from './string.js';
-import {objToHtml} from './string.js';
 import {socket} from './socket.js';
 
 // input for setting lattitude by the user
@@ -161,7 +160,7 @@ function initMap() {
      * this function will output custom marker data in eventOutput on mouseover
      */
     function showMarkerProps(){
-      let props = objToHtml(marker.customData);
+      let props = objToStr(marker.customData, '<br>');
       if (!props) {
         eventOutput.innerHTML = "no custom props";
       } else {
@@ -199,8 +198,8 @@ function initMap() {
       const icon = './pin--active.png'; // set icon for active state
       marker.setIcon(icon);
       const markerProps = marker.customData; // get custom properties from existing markers
-      eventOutput.innerHTML = objToStr(markerProps); // output props in textarea and eventOutput
-      propsTextarea.value = objToStr(markerProps);
+      eventOutput.innerHTML = objToStr(markerProps, '\n'); // output props in textarea and eventOutput
+      propsTextarea.value = objToStr(markerProps, '\n');
     }
     
     /**
