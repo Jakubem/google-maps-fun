@@ -1,0 +1,16 @@
+div(class="controls-wrapper controls-wrapper--white")
+  fieldset(class="radio-mode-wrapper")
+    legend(class="radio-mode-legend")
+      | Edit mode
+    div(class="radio-container")
+      input(type="radio" class="radio radio__place-marker" id="place-marker" name="edit-mode" checked)
+      label(class="label__radio" for="place-marker")
+        | Place marker
+    div(class="radio-container")
+      input(type="radio" class="radio radio__edit-marker" id="edit-marker" name="edit-mode")
+      label(class="label__radio" for="edit-marker")
+        | Select marker
+    div(class="radio-container")   
+      input(type="radio" class="radio radio__delete-marker" id="delete-marker" name="edit-mode")
+      label(class="label__radio" for="delete-marker")
+        | Delete marker

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    include includes/meta.pug
+    title Google Maps Editor
+  body
+    div(id="map")
+    output(name="dragged-pos" class="dragged-pos")
+    div(class="ui-wrapper")
+      div(class="controls-wrapper")
+        div(class="inputs-wrapper")
+          label(for="lat")
+            | Latitude:
+            br
+            input(type="number" name="lat" class='text-input text-input__lat' placeholder="lat" aria-label="latitude input" value="55.113028")
+          label(for="lng")
+            | Longitude:
+            br
+            input(type="number" name="lng" class='text-input text-input__lng' placeholder="lng" aria-label="longitude input" value="14.920054")
+        div(class="buttons-wrapper")
+          input(type="button" class='btn btn__center-map' value="Center" aria-label="center map position on coordinates")
+          input(type="button" class='btn btn__get-position' value="Save" aria-label="save each marker coordinates")
+          input(type="button" class='btn btn__remove-marker' value="Reset" aria-label="reset markers")
+      include includes/radio.pug
+      include includes/textarea.pug
+      div(class="controls-wrapper controls-wrapper--white")
+        output(class="output-event")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js")
+    script(src="./bundle-frontend.js")
+    script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA89WOjmmx-Y0iF1C4aHW-I7WRwNVGC-lA&callback=initMap" async defer)
