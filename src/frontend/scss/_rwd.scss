@@ -1,0 +1,28 @@
+@media screen and (max-width: 1000px){
+    .controls-wrapper {
+      max-width: 230px;
+    }  
+    .text-input {
+      padding: 0;
+      max-width: 100px;
+      margin-bottom: 10px;
+    }
+    .textarea__marker-props {
+      width: 100%;
+    }
+    .label {
+      font-size: 12px;
+    }
+    .btn {
+      font-size: 10px;
+    }
+    .radio-mode-wrapper {
+      padding: 5px;
+    }
+  
+    .radio {
+      width: 12px;
+      height: 12px;
+      margin: 2px;
+    }
+  }

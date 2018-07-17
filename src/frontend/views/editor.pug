@@ -4,6 +4,7 @@ html(lang="en")
     include includes/meta.pug
     title Google Maps Editor
   body
+    include includes/topbar.pug
     div(id="map")
     output(name="dragged-pos" class="dragged-pos")
     div(class="ui-wrapper")
@@ -18,9 +19,9 @@ html(lang="en")
             br
             input(type="number" name="lng" class='text-input text-input__lng' placeholder="lng" aria-label="longitude input" value="14.920054")
         div(class="buttons-wrapper")
-          input(type="button" class='btn btn__center-map' value="Center" aria-label="center map position on coordinates")
-          input(type="button" class='btn btn__get-position' value="Save" aria-label="save each marker coordinates")
-          input(type="button" class='btn btn__remove-marker' value="Reset" aria-label="reset markers")
+          input(type="button" class='btn btn__blue btn__center-map' value="Center" aria-label="center map position on coordinates")
+          input(type="button" class='btn btn__green btn__get-position' value="Save" aria-label="save each marker coordinates")
+          input(type="button" class='btn btn__red btn__remove-marker' value="Reset" aria-label="reset markers")
       include includes/radio.pug
       include includes/textarea.pug
       div(class="controls-wrapper controls-wrapper--white")
