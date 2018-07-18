@@ -3,12 +3,13 @@
     position: absolute;
     bottom: 0;
     background: white;
-    opacity: 0.9;
+    opacity: 0.8;
     transition: 0.2s;
     will-change: opacity;
     margin: 0;
     padding: 0;
     border-top-right-radius: 5px;
+    height: 110px;
   }
   
   .ui-wrapper:hover {
@@ -35,18 +36,14 @@
   
   .btn,
   .text-input {
-    box-sizing: border-box;
-    margin: 3px;
-    padding: 4px;
-    height: 27px;
+    margin: 2px;
+    padding: 2px;
     border: none;
     border-radius: 2px;
     text-decoration: none;
     color: $c-black;
-  }
-  
-  .btn {
-    width: 100%;
+    font: $f-btn;
+    text-align: center;
   }
   
   .inputs-wrapper,
@@ -92,7 +89,7 @@
   }
   
   .dragged-pos {
-    background: #585858;
+    background: $c-darkgray;
     color: white;
     position: absolute;
     bottom: 0;
@@ -125,8 +122,9 @@
     display: inline-block;
     width: 14px;
     height: 14px;
-    margin: 5px 3px 5px 0;
+    margin: 5px 5px 5px 0;
     border: 2px solid $c-black;
+    border-radius: 3px;
     box-sizing: border-box;
     vertical-align: middle;
   }
@@ -150,8 +148,8 @@
   }
   
   .textarea {
-    border: 6px solid $c-lightgray;
-    background-color: #d8d8d8;
+    border: 6px solid $c-gray;
+    background-color: $c-gray;
     color: #1a1a1a;
     border-radius: 4px;
     word-wrap: break-word;

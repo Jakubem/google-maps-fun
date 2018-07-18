@@ -6,6 +6,19 @@ html(lang="en")
   body
     include includes/topbar.pug
     div(class="hero")
-      p
+      h1(class="header")
         | Google maps GeoJSON editor
-    div(class="load-wrapper")
+    main(class="main-wrapper")
+      div(class="load-wrapper")
+        div(class="sessions sessions__all")
+          ol(class="sessions sessions__list")
+            li(class="sessions sessions__item")
+              ol(class="sessions sessions__item-props")
+                a(class="sessions sessions__item-a btn btn__blue anchor")
+                  | open
+                li(class="sessions sessions__item-props-item")
+                  | Date
+                li(class="sessions sessions__item-props-item")
+                  | Name
+                li(class="sessions sessions__item-props-item")
+                  | Keywords
