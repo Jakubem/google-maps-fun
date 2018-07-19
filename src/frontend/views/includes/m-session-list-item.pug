@@ -1,0 +1,8 @@
+mixin m-session-list-item(obj)
+    li(class="sessions__item")
+        a(class="sessions__item-a" href=obj.aHref)
+            | open
+        p(class="sessions__item-name")
+            | #{obj.sessionName}
+        p(class="sessions__item-detail")
+            | #{obj.date}

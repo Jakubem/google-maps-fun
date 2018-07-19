@@ -37,20 +37,28 @@
   .btn,
   .text-input {
     margin: 2px;
-    padding: 2px;
+    padding: 5px;
     border: none;
     border-radius: 2px;
     text-decoration: none;
     color: $c-black;
     font: $f-btn;
     text-align: center;
+    width: 100%;
+  }
+
+  .btn:hover {
+    filter: brightness(1.1);
+  }
+  
+  .btn:active {
+    background-color: azure;
   }
   
   .inputs-wrapper,
   .buttons-wrapper {
     display: flex;
     justify-content: space-between;
-    width: 100%;
   }
   
   .text-input {
@@ -80,14 +88,6 @@
     background-color: $c-blue;
   }
 
-  .btn:hover {
-    filter: brightness(1.1);
-  }
-  
-  .btn:active {
-    background-color: azure;
-  }
-  
   .dragged-pos {
     background: $c-darkgray;
     color: white;

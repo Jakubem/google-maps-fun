@@ -10,15 +10,4 @@ html(lang="en")
         | Google maps GeoJSON editor
     main(class="main-wrapper")
       div(class="load-wrapper")
-        div(class="sessions sessions__all")
-          ol(class="sessions sessions__list")
-            li(class="sessions sessions__item")
-              ol(class="sessions sessions__item-props")
-                a(class="sessions sessions__item-a btn btn__blue anchor")
-                  | open
-                li(class="sessions sessions__item-props-item")
-                  | Date
-                li(class="sessions sessions__item-props-item")
-                  | Name
-                li(class="sessions sessions__item-props-item")
-                  | Keywords
+        include includes/session-list.pug
