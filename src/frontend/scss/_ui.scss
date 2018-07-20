@@ -22,12 +22,11 @@
     flex-direction: column;
     background: linear-gradient(#d8d8d8, $c-lightgray);
     padding: 5px;
-    font-family: 'verdana';
     z-index: 1;
     border-right: 1px solid $c-lightgray;
     border-top-right-radius: 5px;
     max-width: 350px;
-    min-width: 130px;
+    min-width: 100px;
   }
   
   .controls-wrapper--white {
@@ -74,7 +73,6 @@
     padding: 0;
     margin: 0;
     color: black;
-    font-family: 'verdana';
   }
   
   
@@ -100,7 +98,6 @@
     transition: 0.2s;
     will-change: opacity;
     padding: 5px;
-    font-family: 'verdana';
     font-size: 12px;
     text-align: center;
     border-top-left-radius: 5px;
@@ -108,7 +105,6 @@
   }
   
   .label__radio {
-    font-family: 'verdana';
     font-size: 12px;
     color: $c-black;
   }
@@ -125,7 +121,7 @@
     width: 14px;
     height: 14px;
     margin: 5px 5px 5px 0;
-    border: 2px solid $c-black;
+    border: 1px solid $c-darkgray;
     border-radius: 3px;
     box-sizing: border-box;
     vertical-align: middle;
@@ -140,13 +136,13 @@
   
   .radio-mode-wrapper {
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    justify-content: center;
     border: none;
     margin: 0;
     height: 100%;
     box-sizing: border-box;
-    padding: 10px;
+    padding: 5px;
   }
   
   .textarea {
