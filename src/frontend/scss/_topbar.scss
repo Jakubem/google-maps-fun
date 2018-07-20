@@ -1,29 +1,38 @@
 .topbar {
   width: 100%;
+  min-height: 55px;
   padding: 0;
   background: $c-darkgray;
   display: flex;
   justify-content: space-between;
+  z-index: 3;
 }
 
 .anchor-wrapper {
   width: 30%;
   min-width: 150px;
   max-width: 200px;
-  margin: 5px;
+  margin: 15px;
   display: flex;
 }
 
 .svg-container {
   margin: 2px;
-  padding: 5px;
+  padding: 7px;
   border: none;
-  border-radius: 2px;
+  border-radius: 50%;
   text-decoration: none;
-  background-color: $c-red;
   text-align: center;
+  background-color: $c-red;
   color: $c-black;
-  svg {
+  height: 25px;
+  &:hover {
+    filter: brightness(1.2);
+  }
+  &:active {
+    background-color: azure;
+  }
+  .svg {
     height: 100%;
   }
 }

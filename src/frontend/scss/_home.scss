@@ -26,6 +26,10 @@
   box-shadow: inset 0 0 15px $c-blue-d, 0 0 5px $c-lightgray;
 }
 
+.session-label {
+  font: $f-h2;
+}
+
 .sessions__item {
     display: flex;
     justify-content: space-between;

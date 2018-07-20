@@ -37,13 +37,15 @@
   .btn,
   .text-input {
     margin: 2px;
-    padding: 5px;
     border: none;
-    border-radius: 2px;
     text-decoration: none;
+    border-radius: 2px;
     color: $c-black;
     font: $f-btn;
     text-align: center;
+    height: 25px;
+    box-sizing: border-box;
+    line-height: 25px;
     width: 100%;
   }
 
