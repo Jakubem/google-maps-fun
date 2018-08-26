@@ -13,7 +13,7 @@
 - `src/backend` - backend source files
 
 ### Setup:
-> `npm run backend` - Compile backend to `bin` folder, and start server with nodemon
+> `npm run backend` - Compile backend to `bin` folder, and start server with nodemon<br>
 > `npm run frontend` - Compile frontend to `dist` folder
 
 ### `dotenv` file structure:
